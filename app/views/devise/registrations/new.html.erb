@@ -1,0 +1,43 @@
+<div class="row" style="background-color:#EEE; margin:0px;">
+<div class="col s12 offset-m3 m6 offset-l3 l6" style="height:620px">
+<div class="card z-depth-1" style="width:80%; padding:25px; margin:40px; text-align:left; background:#FFF; height:80%;" >
+
+<div style="font-size:1.2rem; font-weight:bold;">DogTubeに登録すると、お気に入り機能が使えます。</div>
+
+  <div style="font-size:1rem;"><%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  </div>
+
+  <div class="field" style="padding:20px 0 0 0;">
+    <%= f.label "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field"style="padding:40px 0 0 0;" >
+    <%= f.label "パスワード" %>
+    <% if @minimum_password_length %>
+    <!-- <em>(<%= @minimum_password_length %> characters minimum)</em> -->
+    <em>(8文字以上の英数字を入力してください。)</em>
+    <% end %><br />
+
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+  <div class="field" style="padding:40px 0 0 0;">
+    <%= f.label "パスワードの確認" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions center" style="margin:30px 0 20px 0px; padding:0px;">
+    <%= f.submit "新規登録",class:"btn z-depth-0" %>
+  </div>
+
+  <% end %>
+</div>
+</div>
+</div>
+<!-- all -->
+<!-- <div class="row">
+<div class="col s12 m12 l12">
+<%= render "devise/shared/links" %>
+</div>
+</div> -->

@@ -1,0 +1,510 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<body>
+
+<div class="row" style="background-color:#EEE
+; padding: 5px; margin:0px;">
+
+
+
+<div class="col s12 m4 l3" > 
+
+<div class="card-search z-depth-1">
+
+<%= search_form_for @search do |f| %>
+
+<div class="field">
+<div style="font-size:1rem; font-weight:bold; display:inline-block; margin:0px 0 5px ;">キーワードで検索する</div>
+</div>    
+
+<%= f.text_field :title_cont %>
+
+<!-- <div class="field">
+<div style="font-size:1.3rem; font-weight:bold; line-height:60px;">希望条件で犬種を絞る</div>
+</div>
+
+<dl id="slidetoggle_menu">
+<dt>▽ 希望条件をもっと見る</dt>
+<dd>
+<p>
+</p>
+</dd>
+</dl> -->
+
+<p>
+<div class="field center">
+<%= f.submit "検索" ,class: "btn z-depth-0"%>
+</div>
+</p>
+
+<% end %>
+
+<div class="divider"></div>
+
+<div style="font-weight:bold;">タグで検索する</div>
+
+<div class="center">
+<%= link_to '全ての犬種を表示', [:dogs] ,class:"btn z-depth-0 ",style:"margin:20px;" %>
+</div>
+
+<div class="divider"></div>
+<% @tags.each do |tag| %>
+<div class="chip" style="background-color:#212121; background-color:#FFC107; font-size:0.rem">
+  <%= link_to tag.name, { :action => :tag, :name => tag.name }%>
+</div>
+<% end %>
+
+</div>
+
+<div class="card white center-align z-depth-3" style="height:340px; margin:0px;">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- ラージ スカイスクレイパー -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:300px; height:300px; padding:20px 0px 0 0px"
+       data-ad-client="ca-pub-8229413563041055"
+       data-ad-slot="9624583528"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+</div>
+
+<!-- main content start -->
+<div class="row">
+<div class="col s12 m8 l9">
+
+<!-- today start -->
+
+<div class="row">
+<div class="col s12">
+
+<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
+
+<div class="col s12 m12 l12">
+<div class="card" style="height:120px; background-color:#FFF; padding:15px; margin:2px 0 0 0;">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- レスポンシブ2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8229413563041055"
+     data-ad-slot="6615475524"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+</div>
+
+<% else %>
+
+<div class="card z-depth-1" style="background-color:#FFF; margin:20px 0px 0 0px; height:auto; padding:10px;">
+<div class="card-title" style="font-size:1rem; font-weight:bold; color:#212121; padding:3px;">最近アップロードされた動画  /<span style="color:#818181">  あなたにおすすめの動画</span></div>
+
+<% @models_week.each do |dog| %>
+
+<div class="col s12 m6 l3">
+
+<div class="card z-depth-0" style="height:auto; background-color:#FFF; margin:20px 0 5px; color:#212121; border:1px #212121 solid;">
+  <div class="card-image">
+    <a href="/dogs/<%= dog.id%>}">
+    <img src=<%=dog.mvid%> >
+    </a>
+    <span class="label Youtube">Youtube</span>
+    <span class="duration">
+    <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+    <%= dog.length %>
+    </span>
+  </div>
+
+   <!-- Card Content -->
+   <div class="card-content">   
+   <p>
+     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
+   </p>
+
+   <p style="font-weight:100; color:#727272;">   
+   <i class="tiny material-icons">visibility</i>
+   <%=dog.watch%> views
+   </p>
+
+   <p style="font-weight:100; color:#727272;">
+   <i class="tiny material-icons">thumb_up</i>
+   <%=dog.fav%> likes
+   </p>
+
+
+   <p>
+   <% dog.tags.each do |tag| %>
+   <div class="chip" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name, :'data-no-turbolink' =>  "true"  } %></div>
+   <% end %>
+   </p>
+
+   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
+   <i class="material-icons" style="font-size:0.7rem">today</i>
+   <%= dog.post_date.to_s.gsub("-",".") %>
+   </p>
+
+   <!--  dog.tags -->
+
+    <% if user_signed_in? %>
+      <div class="center">
+        <div style="display:block; padding:30;">
+          <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
+        </div>
+      </div>
+    <% else %>
+    <% end %>
+   <!-- user_signed_in -->
+    </div>
+   </div>
+  </div>
+
+  <% end %>
+  <!-- ad on/off -->
+</div>
+
+<% end %>
+<!-- request.url -->
+
+<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
+<% else %>
+<div class="row">
+    <div class="col s12 z-depth-1" style="margin:20px 0px 0px; border:0px; padding:10px; background-color:#FFF; border-radius:8px; ">
+    <span style="font-weight:bold;" ><i class="tiny material-icons" style="font-size:1rem;">thumb_up</i>期間別いいね数ランキング</span>
+      <ul class="tabs">
+        <li class="tab col s2"><a href="#month">月間</a></li>
+        <li class="tab col s2"><a href="#year">年間</a></li>
+        <li class="tab col s2"><a class="active" href="#all">全期間</a></li>
+      </ul>
+    </div>
+</div>
+<%end%>
+
+</div>
+
+<!-- all start -->
+
+<div id="all" class="col s12">
+
+<% @models.each do |dog| %>
+
+<div class="col s12 m6 l3">
+
+<div class="card" style="height:300px; background-color:#FFF; margin:20px 0 5px">
+  <div class="card-image">
+    <a href="/dogs/<%= dog.id%>}">
+    <img src=<%=dog.mvid%> >
+    </a>
+    <span class="label Youtube">Youtube</span>
+    <span class="duration">
+    <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+    <%= dog.length %>
+    </span>
+  </div>
+
+   <!-- Card Content -->
+   <div class="card-content">   
+   <p>
+     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
+   </p>
+
+   <p style="font-weight:100; color:#727272;">   
+   <i class="tiny material-icons">visibility</i>
+   <%=dog.watch%> views
+   </p>
+
+   <p style="font-weight:100; color:#727272;">
+   <i class="tiny material-icons">thumb_up</i>
+   <%=dog.fav%> likes
+   </p>
+
+   <p>
+   <% dog.tags.each do |tag| %>
+   <div class="chip " style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+   <% end %>
+   </p>
+
+   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
+   <i class="material-icons" style="font-size:0.7rem">today</i>
+   <%= dog.post_date.to_s.gsub("-",".") %>
+   </p>
+
+   <!--  dog.tags -->
+
+<% if user_signed_in? %>
+  <div class="center">
+    <div style="display:block; padding:30;">
+      <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
+      </div>
+  </div>
+  <% else %>
+<% end %>
+<!-- user_signed_in -->
+
+</div>
+</div>
+</div>
+
+<% end %>
+
+<!--  all models.each do |dog| end -->
+
+<div class="col s12 m12 l12 center" style="padding:10px;">
+<%= will_paginate @models %>
+</div>
+
+
+</div>
+
+<!-- all end -->
+
+<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
+<% else %>
+
+<!-- year start -->
+
+<div id="year" class="col s12">
+
+<% @models_year.each do |dog| %>
+
+<div class="col s12 m6 l3">
+
+<div class="card z-depth-3" style="height:300px; background-color:#FFF; margin:20px 0 5px;">
+  <div class="card-image">
+    <a href="/dogs/<%= dog.id%>}">
+    <img src=<%=dog.mvid%> >
+    </a>
+    <span class="label Youtube">Youtube</span>
+    <span class="duration">
+    <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+    <%= dog.length %>
+    </span>
+  </div>
+
+   <!-- Card Content -->
+   <div class="card-content">   
+   <p>
+     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
+   </p>
+
+   <p style="font-weight:100; color:#727272;">   
+   <i class="tiny material-icons">visibility</i>
+   <%=dog.watch%> views
+   </p>
+
+   <p style="font-weight:100; color:#727272;">
+   <i class="tiny material-icons">thumb_up</i>
+   <%=dog.fav%> likes
+   </p>
+
+   <p>
+   <% dog.tags.each do |tag| %>
+   <div class="chip z-depth-1" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+   <% end %>
+   </p>
+
+   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
+   <i class="material-icons" style="font-size:0.7rem">today</i>
+   <%= dog.post_date.to_s.gsub("-",".") %>
+   </p>
+
+   <!--  dog.tags -->
+
+<% if user_signed_in? %>
+  <div class="center">
+    <div style="display:block; padding:30;">
+      <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
+      </div>
+  </div>
+  <% else %>
+<% end %>
+<!-- user_signed_in -->
+
+</div>
+</div>
+</div>
+
+<% end %>
+
+<div style="padding:20px 0 0 0">
+<%= will_paginate @models_year %>
+</div>
+
+</div>
+
+<!-- year end-->
+
+<!-- month start -->
+
+<div id="month" class="col s12">
+
+<% @models_month.each do |dog| %>
+
+<div class="col s12 m6 l3">
+
+<div class="card z-depth-3" style="height:300px; background-color:#FFF; margin:20px 0 5px">
+  <div class="card-image">
+    <a href="/dogs/<%= dog.id%>}">
+    <img src=<%=dog.mvid%> 
+    </a>
+    <span class="label Youtube">Youtube</span>
+    <span class="duration">
+    <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+    <%= dog.length %>
+    </span>
+  </div>
+
+   <!-- Card Content -->
+   <div class="card-content">   
+   <p>
+     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
+   </p>
+
+   <p style="font-weight:100; color:#727272;">   
+   <i class="tiny material-icons">visibility</i>
+   <%=dog.watch%> views
+   </p>
+
+   <p style="font-weight:100; color:#727272;">
+   <i class="tiny material-icons">thumb_up</i>
+   <%=dog.fav%> likes
+   </p>
+
+   <p>
+   <% dog.tags.each do |tag| %>
+   <div class="chip z-depth-1" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+   <% end %>
+   </p>
+
+   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
+   <i class="material-icons" style="font-size:0.7rem">today</i>
+   <%= dog.post_date.to_s.gsub("-",".") %>
+   </p>
+
+   <!--  dog.tags -->
+
+<% if user_signed_in? %>
+  <div class="center">
+    <div style="display:block; padding:30;">
+      <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
+      </div>
+  </div>
+  <% else %>
+<% end %>
+<!-- user_signed_in -->
+
+</div>
+</div>
+</div>
+
+<% end %>
+
+<div style="padding:20px 0 0 0">
+<%= will_paginate @models_month %>
+</div>
+
+</div>
+
+<% end %>
+
+
+<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
+
+<div class="row center" style="margin:20px 0px 0px 12px; ">
+<div class="col s12 m12 l12">
+<div class="card" style=" height:120px; background-color:#FFF; padding:15px;">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- レスポンシブ2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8229413563041055"
+     data-ad-slot="6615475524"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+</div>
+</div>
+
+<%else%>
+<%end%>
+
+
+<!-- month end-->
+
+
+
+
+<% if user_signed_in? %>
+      <div class="row center">
+        <div class="col s12 m12 l12">
+          <div class="card blue-grey darken-3">
+            <div class="card-content white-text">
+              <span class="card-title waves-effect waves-light"><%= link_to '[+] 犬種登録を行う', new_dog_path,class:"white-text" %></span>
+              <p>新しい動画を登録をします。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+<% else %>
+<% end %>
+
+
+</div>
+
+
+
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+<script type="text/javascript">
+var num = 0;
+var tgt = 30;
+var speed = 10;
+setInterval(function(){
+if(num <= tgt){
+  $('#cup').html(num);
+  num++;
+}
+},speed);
+</script>
+
+<script type="text/javascript">
+
+$(function($) {
+  var tab = $('.hoge'),
+    offset = tab.offset();
+
+$(window).scroll(function () {
+  if($(window).scrollTop() > offset.top) {
+    tab.addClass('fixed');
+  } else {
+    tab.removeClass('fixed');
+  }
+});
+});
+
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        $("#slidetoggle_menu dt").on("click", function() {
+            $(this).next().slideToggle(); 
+            $(this).toggleClass("active"); 
+        });
+    });
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('ul.tabs').tabs();
+  });
+</script>

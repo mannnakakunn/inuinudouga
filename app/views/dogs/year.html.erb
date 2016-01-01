@@ -1,0 +1,282 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<body>
+
+
+
+<div class="row" style="background-color:#FFECB3
+; padding: 5px; margin:0px;">
+
+<div class="col s12 m4 l3" > 
+<!-- Note that "m4 l3" was added -->
+        <!-- Grey navigation panel
+
+              This content will be:
+          3-columns-wide on large screens,
+          4-columns-wide on medium screens,
+          12-columns-wide on small screens  -->
+<div class="card-search z-depth-5">
+
+<%= search_form_for @search do |f| %>
+
+<div class="field">
+<div style="font-size:1.3rem; font-weight:bold; display:inline-block; margin:20px 0 5px ;">キーワードで検索する</div>
+</div>    
+
+<%= f.text_field :title_cont %>
+
+<div class="field">
+<div style="font-size:1.3rem; font-weight:bold; line-height:60px;">希望条件で犬種を絞る</div>
+</div>
+
+<dl id="slidetoggle_menu">
+<dt>▽ 希望条件をもっと見る</dt>
+<dd>
+<p>
+</p>
+</dd>
+</dl>
+
+<p>
+<div class="field center">
+<%= f.submit "以上の条件で探す" ,class: "btn"%>
+</div>
+</p>
+
+<% end %>
+
+<div class="divider"></div>
+
+<p>タグで検索する</p>
+
+<%= link_to '全て表示', [:dogs] %>
+<div class="divider"></div>
+
+<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  <%= link_to tag.name, { :action => :tag, :name => tag.name }, :class => css_class %>
+<% end %>
+</div>
+
+<div class="card white center-align z-depth-3" style="height:340px; margin:0px;">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- ラージ スカイスクレイパー -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:300px; height:300px; padding:20px 0px 0 0px"
+       data-ad-client="ca-pub-8229413563041055"
+       data-ad-slot="9624583528"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<div class="card white center-align z-depth-3" style="height:340px; margin:20px 0 0 0 ; ">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- ラージ スカイスクレイパー -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:300px; height:300px; padding:20px 0px 0 0px"
+       data-ad-client="ca-pub-8229413563041055"
+       data-ad-slot="9624583528"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<div class="card white center-align z-depth-3" style="height:340px; margin:20px 0 0 0 ; ">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- ラージ スカイスクレイパー -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:300px; height:300px; padding:20px 0px 0 0px"
+       data-ad-client="ca-pub-8229413563041055"
+       data-ad-slot="9624583528"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+<div class="card white center-align z-depth-3" style="height:340px; margin:20px 0 0 0 ; ">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- ラージ スカイスクレイパー -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:300px; height:300px; padding:20px 0px 0 0px"
+       data-ad-client="ca-pub-8229413563041055"
+       data-ad-slot="9624583528"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+
+</div>
+
+
+
+<!-- メインコンテンツ -->
+
+<div class="row">
+<div class="col s12 m8 l9">
+
+<div class="row">
+    <div class="col s12 m12 l6 z-depth-3" style="margin:23px 10px 5px; border:0px; padding:10px; background-color:#FFF; border-radius:8px;" >
+    ランキングを切り替える
+      <ul class="tabs">
+        <li class="tab col s2"><a href="#test1">今日</a></li>
+        <li class="tab col s2"><%= link_to "今日",root_path,{ :'data-no-turbolink' =>  "true" } %></li>
+
+        <li class="tab col s2"><a href="#test1">週間</a></li>
+        <li class="tab col s2"><a class="active" href="#test2">月間</a></li>
+        <li class="tab col s2"><a href="#test3">年間</a></li>
+        <li class="tab col s2"><a href="#test4">全期間</a></li>
+      </ul>
+    </div>
+</div>
+
+
+
+<% @models.each do |dog| %>
+
+<div class="col s12 m6 l3">
+
+<div class="card z-depth-3" style="height:300px; background-color:#FFF; margin:20px 0 5px">
+  <div class="card-image">
+    <a href="/dogs/<%= dog.id%>}">
+    <img src=<%=dog.mvid%> >
+    </a>
+    <span class="label Youtube">Youtube</span>
+    <span class="duration">
+    <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+    <%= dog.length %>
+    </span>
+  </div>
+
+   <!-- Card Content -->
+   <div class="card-content">   
+   <p>
+     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
+   </p>
+
+   <p style="font-weight:100; color:#727272;">   
+   <i class="tiny material-icons">visibility</i>
+   <%=dog.watch%> views
+   </p>
+
+   <p style="font-weight:100; color:#727272;">
+   <i class="tiny material-icons">thumb_up</i>
+   <%=dog.fav%> likes
+   </p>
+
+   <p>
+   <% dog.tags.each do |tag| %>
+   <div class="chip z-depth-1" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+   <% end %>
+   </p>
+
+   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
+   <i class="material-icons" style="font-size:0.7rem">today</i>
+   <%= dog.post_date.to_s.gsub("-",".") %>
+   </p>
+
+   <!--  dog.tags -->
+
+<% if user_signed_in? %>
+  <div class="center">
+    <div style="display:block; padding:30;">
+      <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
+      </div>
+  </div>
+  <% else %>
+<% end %>
+<!-- user_signed_in -->
+
+</div>
+</div>
+</div>
+
+<% end %>
+
+<% if user_signed_in? %>
+      <div class="row center">
+        <div class="col s12 m12 l12">
+          <div class="card blue-grey darken-3">
+            <div class="card-content white-text">
+              <span class="card-title waves-effect waves-light"><%= link_to '[+] 犬種登録を行う', new_dog_path,class:"white-text" %></span>
+              <p>新しい動画を登録をします。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+<% else %>
+<% end %>
+
+<div class="row center">
+<div class="col s12 m12 l12",style="margin: 0;">
+
+<div style="padding:20px 0 0 0">
+<%= will_paginate @models %>
+</div>
+
+<%= link_to "ランキング全体を見る",rank_path,{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light z-depth-2" } %>
+
+</div>
+</div>
+
+</div>
+
+<div class="row center" style="margin:100;">
+<div class="col s12 m12 l12">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- レスポンシブ2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8229413563041055"
+     data-ad-slot="6615475524"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+<script type="text/javascript">
+var num = 0;
+var tgt = 30;
+var speed = 10;
+setInterval(function(){
+if(num <= tgt){
+  $('#cup').html(num);
+  num++;
+}
+},speed);
+</script>
+
+<script type="text/javascript">
+
+$(function($) {
+  var tab = $('.hoge'),
+    offset = tab.offset();
+
+$(window).scroll(function () {
+  if($(window).scrollTop() > offset.top) {
+    tab.addClass('fixed');
+  } else {
+    tab.removeClass('fixed');
+  }
+});
+});
+
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        $("#slidetoggle_menu dt").on("click", function() {
+            $(this).next().slideToggle(); 
+            $(this).toggleClass("active"); 
+        });
+    });
+</script>
+
+

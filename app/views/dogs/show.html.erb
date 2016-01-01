@@ -1,0 +1,204 @@
+<body>
+
+<div class="row" style="background-color:#EEEEEE; margin:0px; padding:10px 10px 20px 20px;">
+<!-- 左カラム -->
+<div class="col s12 m6 l6">
+
+<div class="card z-depth-1" style="background-color:#FFF; margin:14px 0px 14px 0; height:100px; padding:20px;">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- レスポンシブ2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8229413563041055"
+     data-ad-slot="6615475524"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+<div class="video-container">
+        <iframe width="853" height="480" src=//www.youtube.com/embed/<%= @dog_url %>?rel=0
+
+        frameborder="0" allowfullscreen></iframe>
+</div>
+
+ <% @dog.tags.each do |tag| %>
+ <div class="chip z-depth-1 center-align" style="background-color:#212121; background-color:#FFC107; margin:15px 0 0 0px;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+ <% end %>
+
+<!-- Bookmark機能 -->
+<div class="right" style="margin:10px; font-size:0.8rem;">
+  <%= link_to dog_bookmarks_toggle_path(@dog) , id: 'bookmark-link', :remote=>true do %>
+  <%= raw bookmark_icon(@dog, current_user) %>
+  <% end %>
+</div>
+
+<% if user_signed_in? %>
+<% else %>
+<%= link_to "この動画をお気に入り登録する(要ログイン)",user_session_path,{ :'data-no-turbolink' =>  "true",:class =>"right",:style =>"padding:14px 0 0 0;"} %>
+<% end %>
+
+<!--  dog.tags -->
+<div class="related_title z-depth-1"><i class="material-icons mid">search</i> おすすめ動画</div>
+
+<% @recommended.each do |dog| %>
+     <div class="related z-depth-1" style="border-bottom:1px solid #DDDDDD;">
+      
+      <div class="thumb">
+        <a href="/dogs/<%= dog.id%>}">
+        <img src=<%=dog.mvid%> alt=<%=dog.title%> height="100px;" width="180px">
+        </a>
+        <span class="related_label Youtube">Youtube</span>
+        <span class="related_duration">
+        <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+        <%= dog.length %>
+        </span>
+      </div>
+      
+      <div class="content">
+
+        <div class="title">
+        <a href="/dogs/<%= dog.id%>}">
+        <%= dog.title.truncate(37).gsub("　","") %>
+        </a>
+        </div>
+
+        <div class="name">
+          by <%= dog.name %>
+        </div>
+
+        <div class="watch">
+
+        <p style="font-weight:100; color:#727272; font-size:0.7rem">   
+        <i class="tiny material-icons" style="font-size:0.7rem;">visibility</i>
+        <%= dog.watch%> views
+        <i class="tiny material-icons" style="font-size:0.7rem;">thumb_up</i>
+        <%=dog.fav%> likes
+        <i class="tiny material-icons" style="font-size:0.7rem;">today</i>
+        <%= dog.post_date.to_s.gsub("-",".") %>        
+        </p>
+
+
+        <p>
+        <% dog.tags.each do |tag| %>
+        <div class="chip z-depth-0 right" style="background-color:#212121; background-color:#FFC107; margin:0px; font-size:0.7rem;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+        <% end %>
+        </p>
+
+
+        </div>
+
+      </div>
+
+     </div>
+
+<% end %>
+
+</div>
+<!-- 右カラム -->
+
+<div class="col s12 m6 l6">
+<div class="related_title z-depth-1"><i class="material-icons">search</i><%= @dog.tag_list %>の関連動画</div>
+<% @related.each do |dog| %>
+     <div class="related z-depth-1" style="border-bottom:1px solid #DDDDDD;">
+      
+      <div class="thumb">
+        <a href="/dogs/<%= dog.id%>}">
+        <img src=<%=dog.mvid%> alt=<%=dog.title%> height="100px;" width="180px">
+        </a>
+
+        <span class="related_label Youtube">Youtube</span>
+        <span class="related_duration">
+        <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+        <%= dog.length %>
+        </span>
+
+      </div>
+      
+      <div class="content">
+
+      <div class="title">
+      <a href="/dogs/<%= dog.id%>}">
+      <%= dog.title.truncate(40).gsub("　","") %>
+      </a>
+      </div>
+      
+      <div class="name">
+        by <%= dog.name %>
+      </div>
+
+      <div class="watch">
+
+        <p style="font-weight:100; color:#727272;">   
+         <i class="tiny material-icons">visibility</i>
+        <%= dog.watch%> views
+        <i class="tiny material-icons">thumb_up</i>
+        <%=dog.fav%> likes
+        <i class="tiny material-icons">today</i>
+        <%= dog.post_date.to_s.gsub("-",".") %>
+        </p>
+
+      </div>
+
+      </div>
+
+     </div>
+
+<% end %> 
+</div>
+
+<div class="collection z-depth-1" style="background-color:#FFF; margin:20px; top:10px; left:10px; bottom:0px;">
+        <div class="collection-item center black-text">
+        <div class="related_title"><i class="material-icons mid">search</i>タグ検索</div></div>
+        <% @tags.each do |tag| %>
+        <div class="collection-item">
+        <%= link_to tag, { :action => :tag, :name => tag.name, :class =>"collection-item"} %>
+        </div>
+        <% end %>
+</div>
+
+<div class="card z-depth-1 center" style="background-color:#FFF; margin:20px; top:10px; left:10px; bottom:20px; height:150px; padding:40px">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- レスポンシブ2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8229413563041055"
+     data-ad-slot="6615475524"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<script type="text/javascript">
+
+var bookmark_icon;
+
+bookmark_icon = function() {
+  return $("#bookmark-link").click(function() {
+    return $(this).children('i').toggleClass('fa-bookmark-o');
+  });
+};
+
+$(document).on('page:change', bookmark_icon);
+
+// ---
+// generated by coffee-script 1.9.2
+
+
+</script>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+</div>

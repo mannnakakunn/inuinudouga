@@ -1,0 +1,55 @@
+<% provide(:title, @user.id) %>
+
+<div class="related_title z-depth-1"><i class="material-icons mid">search</i> <%= @user.id %>さんお気に入り動画</div>
+
+<% @user.bookmarks.each do |bookmarks| %>
+     <div class="related z-depth-1" style="border-bottom:1px solid #DDDDDD;">
+      
+      <div class="thumb">
+        <a href="/dogs/<%= bookmarks.dog.id%>}">
+        <img src=<%=bookmarks.dog.mvid%> alt=<%=bookmarks.dog.title%> height="100px;" width="180px">
+        </a>
+        <span class="related_label Youtube">Youtube</span>
+        <span class="related_duration">
+        <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
+        <%= bookmarks.dog.length %>
+        </span>
+      </div>
+      
+      <div class="content">
+
+        <div class="title">
+        <a href="/dogs/<%= bookmarks.dog.id%>}">
+        <%= bookmarks.dog.title.truncate(37).gsub("　","") %>
+        </a>
+        </div>
+
+        <div class="name">
+          by <%= bookmarks.dog.name %>
+        </div>
+
+        <div class="watch">
+
+        <p style="font-weight:100; color:#727272; font-size:0.7rem">   
+        <i class="tiny material-icons" style="font-size:0.7rem;">visibility</i>
+        <%= bookmarks.dog.watch%> views
+        <i class="tiny material-icons" style="font-size:0.7rem;">thumb_up</i>
+        <%=bookmarks.dog.fav%> likes
+        <i class="tiny material-icons" style="font-size:0.7rem;">today</i>
+        <%= bookmarks.dog.post_date.to_s.gsub("-",".") %>        
+        </p>
+
+
+       
+
+
+        </div>
+
+      </div>
+
+     </div>
+
+<% end %>
+
+</div>
+

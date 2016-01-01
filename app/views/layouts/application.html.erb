@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<%= display_meta_tags({
+        :title => "" ,
+        :site => t('いぬいぬ動画(犬の種類、犬の歴史・知識、犬用品の選び方など)') ,
+        :description => 'welcome todescpriton',
+        :keywords => '犬,犬の動画, 犬種',
+        :open_graph => {
+           :title => 'いぬいぬ動画',
+           :url   => root_url ,
+        },
+       :twitter => {
+            :card => 'dog',
+            :site => '@inuerabi'
+        } ,
+       :viewport => "width=device-width, initial-scale=1.0" ,
+       :reverse => true
+    })
+%>
+<meta name="description" content="
+          " />
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css">
+<meta name="description"  content="犬選びは、犬のすべてをご紹介！犬の基礎知識、歴史、選び方、種類、健康、道具など犬に関する事であれば、どのような事でも記載しているブック（本）としてサイト名を「犬選び」と名付けました。" />
+
+</head>
+
+<div class="navbar-fixed">
+<nav>
+    <div class="nav-wrapper" style="background-color:#FFF;">
+      <!-- <div style ="margin:0 10px"> -->
+      <ul style="display:inline-block;">
+      <%= link_to "DogTube",dogs_path ,{ :'data-no-turbolink' =>  "true" ,:style => "font-weight: 800; display:inline-block; font-size: 2.5rem; position: static; padding: 0 10; line-height: -2em; color:#212121;" } %>
+      <!-- </div> -->
+
+      <% if user_signed_in? %>
+      <li style="display:inline-block;"><div id="balloon-1-left" ><%=current_user.id%>さん、いつもありがとう。</div></li>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:#212121; ">menu</i></a>
+      </ul>
+
+      <%else%>
+      <li style="display:inline-block;"><div id="balloon-1-left" >楽しい・かわいい犬専門映像チャンネル</div></li>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:#212121; ">menu</i></a>
+      </ul>
+      <%end%>
+
+<% if user_signed_in? %>
+      <ul class="right hide-on-med-and-down">
+        <li><%= current_user.id%></li>
+        <li><%= link_to "お気に入り",user_path(current_user.id),{:'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
+        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:delete } %></li>
+        <li><a href="contact.html" class="black-text">お問い合わせ</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><%= link_to "お気に入り",user_path(current_user.id),{:'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
+        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:delete } %></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </div>
+</nav>
+</div>
+
+<% else %>
+
+      <ul class="right hide-on-med-and-down">
+        <li><%= link_to "新規登録（無料）",new_user_registration_path,{ :'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
+        <li><%= link_to "ログイン",user_session_path,{ :'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
+        <li><a href="contact.html" class="black-text">お問い合わせ</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><%= link_to "ログイン",user_session_path,{ :'data-no-turbolink' =>  "true"} %></li>
+        <li><%= link_to "犬の選び方",choice_path,{ :'data-no-turbolink' =>  "true"} %></li>
+        <li><a href="goods.html">犬の迎え入れ方</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </div>
+</nav>
+</div>
+
+<% end %>
+
+
+<% if notice %>
+  <p class="alert alert-notice"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-error"><%= alert %></p>
+<% end %>
+
+<%= yield %>
+
+</body>
+
+<a href="#" class="page-top">上に戻る　▲</a>
+
+<footer class="center white-text" style="background-color:#CCC;">
+            Copyright © 犬選び 2015 All Rights Reserved.
+            <% if user_signed_in? %>
+            <% else %>
+            <% end %>
+
+</footer>
+
+<script>
+$(document).ready(function() {
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal-trigger').leanModal();
+  $('.slider').slider({full_width: true});
+  $(".button-collapse").sideNav();
+  $('.parallax').parallax();
+  $(".btntoshow").displayPieChart();
+  $('.tooltipped').tooltip({delay: 50});
+  $('.collapsible').collapsible({
+      accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+  });
+  $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    }
+  );
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+    var pageTop = $('.page-top');
+    pageTop.hide();
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 600) {
+            pageTop.fadeIn();
+        } else {
+            pageTop.fadeOut();
+        }
+    });
+    pageTop.click(function () {
+        $('body, html').animate({scrollTop:0}, 500, 'swing');
+        return false;
+    });
+});
+</script>
+
+
+
+</body>
+</html>
