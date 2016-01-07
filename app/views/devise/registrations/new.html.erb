@@ -21,11 +21,20 @@
     <% end %><br />
 
     <%= f.password_field :password, autocomplete: "off" %>
+
   </div>
   <div class="field" style="padding:40px 0 0 0;">
     <%= f.label "パスワードの確認" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+
+<!--   <div class="field" style="padding:40px 0 0 0;">
+    <%= f.label "role" %><br />
+    <%= f.text_field :role %>
+  </div>
+ -->
+
+<%= f.hidden_field :role, :value => "member" %>
 
   <div class="actions center" style="margin:30px 0 20px 0px; padding:0px;">
     <%= f.submit "新規登録",class:"btn z-depth-0" %>

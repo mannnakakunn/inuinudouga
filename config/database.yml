@@ -32,8 +32,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: inuinudouga_production
-  pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock
+  username: sqale_97b454a891
+  password: 443320ec3f64843270bc78ae65fff87949af74a48767bdbe
+  database: sqale_97b454a891
+  host: mysql001.sqale.jp

@@ -8,7 +8,8 @@ gem 'will_paginate'
 gem 'will_paginate-materialize', '~> 0.1.0'
 gem 'breadcrumbs_on_rails'
 gem 'rmagick','2.15.4'
-gem "lazyload-rails"
+# gem "lazyload-rails"
+# gem 'lazysizes_rails'
 gem 'materialize-sass'
 gem 'sprockets', '2.12.4'
 gem 'nokogiri','1.6.6.2'
@@ -18,20 +19,24 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'sitemap_generator'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'amazon-ecs'
-gem "font-awesome-rails"
-gem 'cancancan'
+# gem "font-awesome-rails"
 
+# crontab管理
+gem 'whenever', :require => false
+
+gem 'cancancan'
+gem 'rails_admin'
 # form helper
 gem 'enum_help'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.6'
+gem 'rails', '4.1.8'
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -40,7 +45,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -49,12 +54,15 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', '~>0.4.0', group: :doc
 end
+
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring', group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -63,7 +71,8 @@ end
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano', group: :development
+# gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+

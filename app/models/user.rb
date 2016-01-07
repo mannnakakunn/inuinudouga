@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   #追加
   has_many :bookmarks
   has_many :dogs, through: :bookmarks
+  enum role: {admin: "admin", member: "member"}
+  # enum role: {admin: 'admin', member: 'member'}
 end

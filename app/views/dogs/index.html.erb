@@ -1,11 +1,10 @@
+<script src="lazysizes.min.js" async=""></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <body>
 
 <div class="row" style="background-color:#EEE
 ; padding: 5px; margin:0px;">
-
-
 
 <div class="col s12 m4 l3" > 
 
@@ -110,8 +109,7 @@
 <div class="card z-depth-0" style="height:auto; background-color:#FFF; margin:20px 0 5px; color:#212121; border:1px #212121 solid;">
   <div class="card-image">
     <a href="/dogs/<%= dog.id%>}">
-    <img src=<%=dog.mvid%> >
-    </a>
+    <img src=<%=dog.mvid%> class="lazyload" ></a>
     <span class="label Youtube">Youtube</span>
     <span class="duration">
     <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
@@ -148,15 +146,6 @@
    </p>
 
    <!--  dog.tags -->
-
-    <% if user_signed_in? %>
-      <div class="center">
-        <div style="display:block; padding:30;">
-          <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
-        </div>
-      </div>
-    <% else %>
-    <% end %>
    <!-- user_signed_in -->
     </div>
    </div>
@@ -234,14 +223,7 @@
 
    <!--  dog.tags -->
 
-<% if user_signed_in? %>
-  <div class="center">
-    <div style="display:block; padding:30;">
-      <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
-      </div>
-  </div>
-  <% else %>
-<% end %>
+
 <!-- user_signed_in -->
 
 </div>
@@ -275,7 +257,7 @@
 <div class="card z-depth-3" style="height:300px; background-color:#FFF; margin:20px 0 5px;">
   <div class="card-image">
     <a href="/dogs/<%= dog.id%>}">
-    <img src=<%=dog.mvid%> >
+    <img src=<%=dog.mvid%> class="lazyload" >
     </a>
     <span class="label Youtube">Youtube</span>
     <span class="duration">
@@ -312,17 +294,6 @@
    </p>
 
    <!--  dog.tags -->
-
-<% if user_signed_in? %>
-  <div class="center">
-    <div style="display:block; padding:30;">
-      <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
-      </div>
-  </div>
-  <% else %>
-<% end %>
-<!-- user_signed_in -->
-
 </div>
 </div>
 </div>
@@ -386,14 +357,6 @@
 
    <!--  dog.tags -->
 
-<% if user_signed_in? %>
-  <div class="center">
-    <div style="display:block; padding:30;">
-      <%= link_to '編集する', edit_dog_path(dog),{ :'data-no-turbolink' =>  "true" ,:class =>"btn waves-effect waves-light blue-grey darken-2" } %>
-      </div>
-  </div>
-  <% else %>
-<% end %>
 <!-- user_signed_in -->
 
 </div>
@@ -437,34 +400,15 @@
 
 
 <!-- month end-->
-
-
-
-
-<% if user_signed_in? %>
-      <div class="row center">
-        <div class="col s12 m12 l12">
-          <div class="card blue-grey darken-3">
-            <div class="card-content white-text">
-              <span class="card-title waves-effect waves-light"><%= link_to '[+] 犬種登録を行う', new_dog_path,class:"white-text" %></span>
-              <p>新しい動画を登録をします。</p>
-            </div>
-          </div>
-        </div>
-      </div>
-<% else %>
-<% end %>
-
-
 </div>
-
-
-
 
 </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
+
+<script type="text/javascript">$(document).ready()</script>
+
 <script type="text/javascript">
 var num = 0;
 var tgt = 30;
@@ -507,4 +451,10 @@ $(window).scroll(function () {
 $(document).ready(function(){
     $('ul.tabs').tabs();
   });
+</script>
+
+<script>
+$(function(){
+  $("img.lazy").lazyload({ effect: 'fadeIn', threshold: '200' });
+});
 </script>

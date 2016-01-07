@@ -1,5 +1,9 @@
 Inuinudouga::Application.routes.draw do
 
+  get "base/index"
+  # root 'dogs/index'
+  get  '/admin' => 'admin/base#index'
+
   root 'dogs#index'  
   devise_for :users,:controllers => {
     :sessions      => "users/sessions",
@@ -7,9 +11,9 @@ Inuinudouga::Application.routes.draw do
     :passwords     => "users/passwords",
     # :omniauth_callbacks => "users/omniauth_callbacks" 
   }
+
   resources :users, :only => [:index, :show]
   
-
   resources :dogs do # => tagアクションを追加しました。
      collection do
       get 'tag'

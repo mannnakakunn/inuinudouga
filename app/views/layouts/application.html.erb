@@ -4,16 +4,16 @@
 <meta charset="utf-8" />
 <%= display_meta_tags({
         :title => "" ,
-        :site => t('いぬいぬ動画(犬の種類、犬の歴史・知識、犬用品の選び方など)') ,
+        :site => ('DogTube(犬の動画、犬の種類・知識、犬用品の選び方など)') ,
         :description => 'welcome todescpriton',
         :keywords => '犬,犬の動画, 犬種',
         :open_graph => {
-           :title => 'いぬいぬ動画',
+           :title => 'DogTube',
            :url   => root_url ,
         },
        :twitter => {
             :card => 'dog',
-            :site => '@inuerabi'
+            :site => '@dogtube'
         } ,
        :viewport => "width=device-width, initial-scale=1.0" ,
        :reverse => true
@@ -23,9 +23,10 @@
           " />
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="lazysizes.min.js" async=""></script>
+  <script src="./lazysizes/plugins/unveilhooks/ls.unveilhooks.js"></script>
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css">
 <meta name="description"  content="犬選びは、犬のすべてをご紹介！犬の基礎知識、歴史、選び方、種類、健康、道具など犬に関する事であれば、どのような事でも記載しているブック（本）としてサイト名を「犬選び」と名付けました。" />
 
 </head>
@@ -53,12 +54,12 @@
       <ul class="right hide-on-med-and-down">
         <li><%= current_user.id%></li>
         <li><%= link_to "お気に入り",user_path(current_user.id),{:'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
-        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:delete } %></li>
+        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:get } %></li>
         <li><a href="contact.html" class="black-text">お問い合わせ</a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><%= link_to "お気に入り",user_path(current_user.id),{:'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
-        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:delete } %></li>
+        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:get } %></li>
         <li><a href="contact.html">お問い合わせ</a></li>
       </ul>
     </div>
@@ -84,12 +85,20 @@
 
 <% end %>
 
-
 <% if notice %>
-  <p class="alert alert-notice"><%= notice %></p>
+<div class="row center" style="background-color:#EEE; margin:0px;">
+  <div class="col s12">
+    <p class="alert alert-notice"><%= notice %></p>  
+  </div>
+</div>
 <% end %>
+
 <% if alert %>
-  <p class="alert alert-error"><%= alert %></p>
+<div class="row" s>
+  <div class="col s12">
+    <p class="alert alert-error"><%= alert %></p>  
+  </div>
+</div>
 <% end %>
 
 <%= yield %>

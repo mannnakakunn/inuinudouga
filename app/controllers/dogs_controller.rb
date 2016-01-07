@@ -2,7 +2,7 @@ class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!,only: [:edit,:update,:destroy,:new]
   add_breadcrumb 'Home', 'http://inuerabi-mannnakakunn.sqale.jp/dogs/'
-  
+  before_filter :custom_method, :only => [:new, :edit, :create, :destroy]
 
   def mypage
     @user = User.find(params[:id])
@@ -92,6 +92,7 @@ class DogsController < ApplicationController
   # GET /dogs/1.json
   def show
     @dog_title = Dog.find(params[:id]).title
+    @dog_id = Dog.find(params[:id]).title
     @dog_url = Dog.find(params[:id]).url.match(/\?([^&]+)/).to_s.sub("?v=","")
     @recommended = Dog.where.not(id: params[:id] ,genre: Dog.find(params[:id]).genre).order('fav DESC').limit(21)
     recommended = Dog.where.not(id: params[:id]).order('fav DESC')
@@ -161,4 +162,18 @@ class DogsController < ApplicationController
     def dog_params
       params.require(:dog).permit(:name, :en_name, :size, :group, :color, :price, :popularity, :maintext, :image, :care, :care_point, :personality, :personality_point, :momentum, :momentum_point, :feature, :disease, :discipline, :life, :environment, :sociability, :dog_sociability, :person_sociability, :cold_point, :hot_point, :watchdog_point, :country, :origin, :tag_list, :tag_name)
     end
+
+    def custom_method
+      authenticate_user!
+      if current_user.nil?
+        redirect_to root_url # or whatever
+      elsif current_user.admin?
+        return
+      else
+         redirect_to root_url # or whatever
+      end
+    end
+
+    
+
 end
