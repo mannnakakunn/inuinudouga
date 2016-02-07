@@ -1,6 +1,31 @@
+.nav_menu{
+font-size:1.1rem; color:#339933; border-right:1px #EEE solid;
+}
+
+ a:hover img {
+    -webkit-transition: 0.3s ease-in-out;  
+       -moz-transition: 0.3s ease-in-out;  
+         -o-transition: 0.3s ease-in-out;  
+            transition: 0.3s ease-in-out;  
+  opacity: 0.5;
+  filter: alpha(opacity=70);
+  -ms-filter: "alpha(opacity=70)";
+}
+
+
+mark{
+background-color: transparent;
+}
+
+
+.content_category{
+  padding:30px 0 30px 0;
+  font-size: 1.5rem;
+}
+
 .social-area-syncer {
   width: 100% ;
-  background: #F5F1E9 ; /* 背景色 */
+  background: #FFF; /* 背景色 */
   padding: 0em 0 ;
 }
 
@@ -125,34 +150,32 @@ color:#FFA000;
 }
 
 #all > div.col.s12.m12.l12.center > div > ul > a > .current{
-background-color: #212121 !important;
+background-color: #339933 !important;
 }
 
-#all > div > div > div.card-content > p{
+.card-content > p{
 font-size: 0.8rem;
 }
 
-#all > div > div > div.card-content > p> i{
+.card-content > p> i{
 font-size: 0.8rem;
 }
 
-#all > div > div > div.card-content > div{
+.card-content > div{
 padding: 0 10px 0 10px;
+overflow: hidden;
 }
 
-div.card-content > div > a{
+.card-content > div > a{
   font-size: 0.5rem;
 }
 
-#all > div:nth-child(3) > div > div.card-content > div{
-  overflow: hidden;
-}
 
 body > div.row > div.col.s12.m4.l3 > div.row > div > ul > li > a {
-  color :#212121;  
+  color :#339933;  
 }
 body > div.row > div.col.s12.m4.l3 > div.row > div > ul > div:nth-child(7){
-  border-color:#212121; 
+  border-color:#339933; 
 }
 
 .related_tag{
@@ -172,7 +195,7 @@ body > div.row > div.col.s12.m4.l3 > div.row > div > ul > div:nth-child(7){
 }
 
 .card-content .a .span{
-  color:#212121;
+  color:#339933;
 }
 
 /*関連動画のデザイン*/
@@ -182,20 +205,20 @@ width:auto;
 height: 50px;
 background-color: #FFF;
 font-size: 1.2rem;
-font-weight: 800;
+font-weight: 300;
 margin: 14px 0 1px 0px;
 display: block;
 vertical-align: middle;
-border-bottom: 0px solid #818181;
+border-bottom: 1px solid #DDD;
 text-align: center;
-border-radius: 8px 8px 0 0;
+border-radius: 2px 2px 0 0;
 padding: 8px;
 }
 
 .related{
 position: relative;
 width:auto;
-height: 150px;
+height: 170px;
 background-color: #FFF;
 padding: 0px;
 margin: 0 0 1px 0px;
@@ -217,7 +240,7 @@ margin: 0 0 1px 0px;
   position: relative;
   overflow: hidden;
   width: auto;
-  height: 150px;
+  height: 170px;
   top:0px;
   left: 10px;
   padding: 20px;
@@ -228,16 +251,34 @@ margin: 0 0 1px 0px;
   left:0px;
 }
 
+@media only screen and (max-width : 400px) {
+.related .title{
+  font-size: 0.4rem;
+  left:0px;
+}
+}
+
 .related .name{
   color: #818181;
   font-size: 0.8rem;
+}
+
+@media only screen and (max-width : 400px) {
+.related .name{
+  font-size: 0.3rem;
+}
 }
 
 .related .watch{
   color: #818181;
   font-size: 0.8rem;
 }
-*/
+
+@media only screen and (max-width : 400px) {
+.related .watch{
+  font-size: 0.5rem;
+}
+}
 
 .article_list.reco_list .thumb {
   width: 120px;
@@ -407,7 +448,7 @@ article header li a:hover:before {
 }
 
 .label{
-  background-color: #FFA000;
+  background-color: #339933;
 }
 
 /*時間の表示*/
@@ -441,7 +482,7 @@ article header li a:hover:before {
   font-size: 9px;
   top: 20px;
   left: 20px;
-  background-color: #FFA000;
+  background-color: #339933;
 }
 
 
@@ -505,7 +546,7 @@ margin: 0;
 
 
 body {
-font-family: 'Noto Sans Japanese',serif;
+font-family: 'ヒラギノ丸ゴ Pro W4',serif;
 font-weight:200;
 }
 
@@ -2386,7 +2427,8 @@ font-weight:200;
  *    user zoom.
  */
 html {
-  font-family: 'Noto Sans Japanese',sans-serif;
+  font-family: font-family: 'Noto Sans Japanese', serif;
+  /* ヒラギノ丸ゴ Pro W4',sans-serif;*/
   /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
@@ -2545,7 +2587,7 @@ pre {
  * Address odd `em`-unit font size rendering in all browsers.
  */
 code, kbd, pre, samp {
-  font-family: 'Noto Sans Japanese',monospace, monospace;
+  font-family: 'ヒラギノ丸ゴ Pro W4',monospace, monospace;
   font-size: 1em; }
 
 /* Forms
@@ -2712,7 +2754,7 @@ ul {
   list-style-type: none; }
 
 a {
-  color: #039be5;
+  color: #111;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent; }
 
@@ -2795,17 +2837,19 @@ img.responsive-img, video.responsive-video {
 
 .pagination li {
   display: inline-block;
-  font-size: 1.2rem;
-  padding: 0 10px;
+  font-size: 1.5rem;
+  padding: 0 12px;
   line-height: 30px;
   border-radius: 2px;
   text-align: center; }
   .pagination li a {
-    color: #FFC107; }
+    color: #339933; }
   .pagination li.active a {
-    color: #fff; }
+    color: #FFF; }
   .pagination li.active {
-    background-color: #FF5722; }
+    background-color: #FFF;
+    border:1px solid #339933;
+    }
   .pagination li.disabled a {
     cursor: default;
     color: #999; }
@@ -3010,15 +3054,26 @@ td, th {
       border-right: 1px solid #d0d0d0; } }
 
 .collection {
-  margin: 0.5rem 0 1rem 0;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  margin:0px; top:10px; left:0px; bottom:0px;
+  border: 0px solid #e0e0e0;
+  border-radius: 2px;
   overflow: hidden;
   position: relative; }
+
+@media only screen and (max-width : 500px) {
+
+.collection {
+  margin: 0 0px 0px 0px;
+  border-radius: 2px;
+  overflow: hidden;
+  padding: 0px 0px;
+  position: relative; }
+}
+
   .collection .collection-item {
     /*background-color: #fff;*/
     line-height: 1.5rem;
-    padding: 10px 20px;
+    padding: 30px 0px;
     margin: 0;
     border-bottom: 1px solid #e0e0e0; }
     .collection .collection-item.avatar {
@@ -3027,10 +3082,10 @@ td, th {
       position: relative; }
       .collection .collection-item.avatar .circle {
         position: absolute;
-        width: 42px;
-        height: 42px;
+        width: 62px;
+        height: 62px;
         overflow: hidden;
-        left: 15px;
+        left: 0px;
         display: inline-block;
         vertical-align: middle; }
       .collection .collection-item.avatar i.circle {
@@ -3050,10 +3105,23 @@ td, th {
     .collection .collection-item:last-child {
       border-bottom: none; }
     .collection .collection-item.active {
-      background-color: #26a69a;
-      color: #eafaf9; }
+      background-color: #FFF;
+      /*custom*/
+      color: #339933; 
+      border: 1px dotted #339933; 
+    }
       .collection .collection-item.active .secondary-content {
         color: #fff; }
+  
+  .collection .collection-item {
+    display: block;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    transition: 0.25s;
+    color: #339933; }
+
   .collection a.collection-item {
     display: block;
     -webkit-transition: 0.25s;
@@ -3061,7 +3129,10 @@ td, th {
     -o-transition: 0.25s;
     -ms-transition: 0.25s;
     transition: 0.25s;
-    color: #26a69a; }
+    color: #339933; }
+    .collection .collection-item:not(.active):hover {
+      background-color: #ddd; }
+
     .collection a.collection-item:not(.active):hover {
       background-color: #ddd; }
   .collection.with-header .collection-header {
@@ -3285,7 +3356,7 @@ nav ul a span.badge {
   user-select: none; }
 
 .circle {
-  border-radius: 50%; }
+  border-radius: 0%; }
 
 .center-block {
   display: block;
@@ -6020,12 +6091,13 @@ nav {
       height: 56px;
       line-height: 56px; }
   nav .brand-logo {
-    position: absolute;
-    color: #fff;
+    position: relative;
+    color: #222;
     display: inline-block;
-    font-size: 2.1rem;
-    padding: 0 10;
-    white-space: nowrap; }
+    font-size: 2.2rem;
+    padding: 0;
+    white-space: nowrap;
+     }
     nav .brand-logo.center {
       left: 50%;
       -webkit-transform: translateX(-50%);
@@ -6069,7 +6141,7 @@ nav {
       nav ul li:hover, nav ul li.active {
         background-color: rgba(0, 0, 0, 0.1); }
     nav ul a {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #fff;
       display: block;
       padding: 0 15px; }
@@ -6087,16 +6159,21 @@ nav {
         box-shadow: none; }
     nav .input-field label {
       top: 0;
-      left: 0; }
+      left: 0; 
+    }
       nav .input-field label i {
-        color: rgba(255, 255, 255, 0.7);
+        color: #BBB;
+        font-weight: 100;
+        /*検索窓の中の待ち状態のスタイル*/
         -webkit-transition: color .3s;
         -moz-transition: color .3s;
         -o-transition: color .3s;
         -ms-transition: color .3s;
         transition: color .3s; }
       nav .input-field label.active i {
-        color: #fff; }
+        color: #BBB;
+        /*検索窓の中の一回入力して取り消した後の状態のスタイル*/
+      }
       nav .input-field label.active {
         -webkit-transform: translateY(0);
         -moz-transform: translateY(0);
@@ -6119,42 +6196,45 @@ nav {
     height: 64px; } }
 
 @font-face {
-  font-family:'Noto Sans Japanese';
+  font-family:'ヒラギノ丸ゴ Pro W4';
   font-weight: 200; }
 
 @font-face {
-  font-family:'Noto Sans Japanese';
+  font-family:'ヒラギノ丸ゴ Pro W4';
   font-weight: 300; }
 
 @font-face {
-  font-family:'Noto Sans Japanese';
+  font-family:'ヒラギノ丸ゴ Pro W4';
   font-weight: 400; }
 
 @font-face {
-  font-family:'Noto Sans Japanese';
+  font-family:'ヒラギノ丸ゴ Pro W4';
   font-weight: 500; }
 
 @font-face {
-  font-family:'Noto Sans Japanese';
+  font-family:'ヒラギノ丸ゴ Pro W4';
   font-weight: 700; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #339933;
+
+   }
 
 html {
   line-height: 1.5;
-  font-family:'Noto Sans Japanese', sans-serif;
+  font-family:'ヒラギノ丸ゴ Pro W4', sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87); }
-  @media only screen and (min-width: 0) {
+  @media only screen and (min-width: 0px) {
     html {
-      font-size: 0.8rem; } }
+      font-size: 0.5rem; } }
   @media only screen and (min-width: 765px) {
     html {
       font-size: 0.7rem; } }
   @media only screen and (min-width: 1030px) {
     html {
-      font-size: 1rem; } }
+      font-size: 0.8rem; } }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
@@ -6264,7 +6344,6 @@ small {
       font-size: 1.392rem; } }
   @media only screen and (min-width: 630px) {
     .flow-text {
-    .flow-text {
       font-size: 1.536rem; } }
   @media only screen and (min-width: 810px) {
     .flow-text {
@@ -6301,14 +6380,15 @@ small {
   height: 650px;
   /*高さの固定のために入力*/
   margin: 0.5rem 0 3rem 0;
-  background-color: #FFECB3;
+  background-color: #FFF;
   transition: box-shadow .25s;
-  border-radius: 8px; 
+  border-radius: 2px; 
 } 
 
-@media only screen and (min-width: 0) {
+@media only screen and (min-width: 400px) {
     .card {
-      height: 600px; } }
+      height: 400px; 
+      } }
   @media only screen and (min-width: 599px) {
     .card {
       height: 500px; } }
@@ -6979,13 +7059,20 @@ a.waves-effect .waves-ripple {
 .chip {
   display: inline-block;
   height: 25px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  line-height: 1.6rem;
+  font-weight: 500;
+  line-height: 1.9rem;
   padding: 0 12px;
-  border-radius: 16px; 
+  border-radius: 2px; 
   margin: 6px 0px;
 }
+@media only screen and (max-width : 992px) {
+.chip {
+  line-height: 2.7rem;
+  font-size: 0.6rem;
+}
+}
+
+
   .chip a {
     color:#212121; }
   .span .chip a {
@@ -7183,12 +7270,11 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
   padding-left: 4rem;
   width: calc(100% - 4rem); }
   .input-field input[type=search]:focus {
-    background-color: #fff;
     border: 0;
     box-shadow: none;
     color: #444; }
     .input-field input[type=search]:focus + label i, .input-field input[type=search]:focus ~ .mdi-navigation-close, .input-field input[type=search]:focus ~ .material-icons {
-      color: #444; }
+      color: #339933; }
   .input-field input[type=search] + label {
     left: 1rem; }
   .input-field input[type=search] ~ .mdi-navigation-close, .input-field input[type=search] ~ .material-icons {
@@ -9031,11 +9117,5 @@ small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
-     font-family:
-                        "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro",
-                        "ヒラギノ角ゴ Pro W3","ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro",
-                        "HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO",
-                        "メイリオ",Meiryo,
-                        "ＭＳ Ｐゴシック","MS P Gothic",
-                        sans-serif;
+     font-family:'Noto Sans Japanese', serif;
 }

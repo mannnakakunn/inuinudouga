@@ -5,6 +5,7 @@ class DogsController < ApplicationController
   before_filter :custom_method, :only => [:new, :edit, :create, :destroy]
 
   def mypage
+    @search = Dog.search(params[:q])
     @user = User.find(params[:id])
     @bookmark=Bookmark.all
     @dog=Dog.all
@@ -42,6 +43,7 @@ class DogsController < ApplicationController
   end
 
   def tag
+    @models_daily = Dog.all.where(post_date: 365.day.ago.beginning_of_day..1.day.ago.beginning_of_day).order("fav DESC").limit(5)
     @search = Dog.search(params[:q])
     @model = @search.result.paginate(:page => params[:page], :per_page => 20)
     @models = @model.tagged_with(params[:name]).order("fav DESC")
@@ -71,16 +73,17 @@ class DogsController < ApplicationController
   def index
     @search = Dog.search(params[:q])
     @model = @search.result.paginate(:page => params[:page], :per_page => 20)
+
     # @models = @model.tagged_with(params[:name])
-    @models = @search.result.paginate(:page => params[:page], :per_page => 20).order("fav DESC")
-    @models_year = @search.result.where(post_date: 365.day.ago.beginning_of_day..1.day.ago.beginning_of_day).paginate(:page => params[:page], :per_page => 40).order("fav DESC")
-    @models_month = @search.result.where(post_date: 31.day.ago.beginning_of_day..1.day.ago.beginning_of_day).paginate(:page => params[:page], :per_page => 20).order("fav DESC")
-    @models_week = @search.result.where(post_date: 15.day.ago.beginning_of_day..1.day.ago.beginning_of_day).paginate(:page => params[:page], :per_page => 20).order("fav DESC").limit(4)
+    @models_daily = Dog.all.where(post_date: 365.day.ago.beginning_of_day..1.day.ago.beginning_of_day).order("fav DESC").limit(5)
+    @models = @search.result.paginate(:page => params[:page], :per_page => 30).order("post_date DESC")
+    @models_year = @search.result.where(post_date: 365.day.ago.beginning_of_day..1.day.ago.beginning_of_day).paginate(:page => params[:page], :per_page => 40).order("fav DESC").limit(7)
+    @models_week = @search.result.where(post_date: 3050.day.ago.beginning_of_day..1.day.ago.beginning_of_day).paginate(:page => params[:page], :per_page => 20).where(:description =>'pick')
     @models_today = @search.result.where(post_date: 3.day.ago.beginning_of_day..1.day.ago.beginning_of_day).paginate(:page => params[:page], :per_page => 20).order("fav DESC")
    
     # ransackのクエリとpagenate用の記述を連ねる。検索結果に対してページネートする。
     # @dogs = Dog.all
-    @tags = Dog.tag_counts_on(:tags).order('count DESC')
+    @tags = Dog.tag_counts_on(:tags).order('id ASC')
   end
 
   def tag_cloud
@@ -91,13 +94,14 @@ class DogsController < ApplicationController
   # GET /dogs/1
   # GET /dogs/1.json
   def show
+    @search = Dog.search(params[:q])
     @dog_title = Dog.find(params[:id]).title
     @dog_id = Dog.find(params[:id]).title
     @dog_url = Dog.find(params[:id]).url.match(/\?([^&]+)/).to_s.sub("?v=","")
     @recommended = Dog.where.not(id: params[:id] ,genre: Dog.find(params[:id]).genre).order('fav DESC').limit(21)
     recommended = Dog.where.not(id: params[:id]).order('fav DESC')
     @related = recommended.where(genre: Dog.find(params[:id]).genre).order('fav DESC').limit(7)
-    @tags = Dog.tag_counts_on(:tags).order('count DESC')
+    @tags = Dog.tag_counts_on(:tags).order('id ASC')
     @dog_tag = Dog.find(params[:id]).tag_list
     add_breadcrumb 'いぬいぬ動画',:dogs_path
     add_breadcrumb @dog_title, :dog_path
@@ -110,6 +114,8 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
+    @search = Dog.search(params[:q])
+    @dog = Dog.find(params[:id])
   end
 
   # POST /dogs
@@ -131,6 +137,7 @@ class DogsController < ApplicationController
   # PATCH/PUT /dogs/1
   # PATCH/PUT /dogs/1.json
   def update
+    @search = Dog.search(params[:q])
     respond_to do |format|
       if @dog.update(dog_params)
         format.html { redirect_to @dog, notice: 'Dog was successfully updated.' }
@@ -145,6 +152,7 @@ class DogsController < ApplicationController
   # DELETE /dogs/1
   # DELETE /dogs/1.json
   def destroy
+    @search = Dog.search(params[:q])
     @dog.destroy
     respond_to do |format|
       format.html { redirect_to dogs_url }

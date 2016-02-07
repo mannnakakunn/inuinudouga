@@ -1,10 +1,20 @@
 <body>
 
+<script type="text/javascript">
+var txt1 = "ブックマーク済みです";
+var txt2 = "ブックマークしますか？";
+
+  function ChangeTxt(txt) { 
+    document.getElementById("text").innerHTML=txt;
+} 
+</script>
+
+
 <div class="row" style="background-color:#EEEEEE; margin:0px; padding:10px 10px 20px 20px;">
 <!-- 左カラム -->
 <div class="col s12 m6 l6">
 
-<div class="card z-depth-1" style="background-color:#FFF; margin:14px 0px 14px 0; height:100px; padding:20px;">
+<div class="card z-depth-0" style="background-color:#FFF; margin:14px 0px 14px 0; height:100px; padding:20px;">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- レスポンシブ2 -->
@@ -25,43 +35,44 @@
 </div>
 
  <% @dog.tags.each do |tag| %>
- <div class="chip z-depth-1 center-align" style="background-color:#212121; background-color:#FFC107; margin:15px 0 0 0px;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+ <div class="chip z-depth-0 center" style="background-color:#EEE; border:1px solid #339933; font-size:1rem; font-weight:300;"><%= link_to tag.name.truncate(18), { :action => :tag, :name => tag.name } %></div>
  <% end %>
 
 <!-- Bookmark機能 -->
+
+<% if user_signed_in? %>
+
 <div class="right" style="margin:10px; font-size:0.8rem;">
-  <%= link_to dog_bookmarks_toggle_path(@dog) , id: 'bookmark-link', :remote=>true do %>
+  <%= link_to dog_bookmarks_toggle_path(@dog), id: 'bookmark-link', :remote=>true do %>
   <%= raw bookmark_icon(@dog, current_user) %>
   <% end %>
 </div>
-
-<% if user_signed_in? %>
 <% else %>
-<%= link_to "この動画をお気に入り登録する(要ログイン)",user_session_path,{ :'data-no-turbolink' =>  "true",:class =>"right",:style =>"padding:14px 0 0 0;"} %>
+<%= link_to "この動画をお気に入り登録する(要ログイン)",user_session_path,{ :'data-no-turbolink' =>  "true",:class =>"right",:style =>"padding:15px 0 0 0;"} %>
 <% end %>
 
 <div class="row" style="margin:0px;">
-  <div class="col s12 card" style="background-color:#FFF; height:auto; padding:0px 0 13px 0; margin:0px;">
+  <div class="col s12 card z-depth-0" style="background-color:#FFF; height:auto; padding:0px 0 13px 0; margin:0px;">
 <!-- シェアボタン [ここからコピー] -->
 <div class="social-area-syncer">
   <ul class="social-button-syncer">
     <!-- Twitter ([Tweet]の部分を[ツイート]にすると日本語にできます) -->
-    <li class="sc-tw"><a data-url="https://syncer.jp" href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.375-1.337.648-2.085.795-.598-.638-1.45-1.036-2.396-1.036-1.812 0-3.282 1.468-3.282 3.28 0 .258.03.51.085.75C5.152 5.39 2.733 4.084 1.114 2.1.83 2.583.67 3.147.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.416-.02-.617-.058.418 1.304 1.63 2.253 3.067 2.28-1.124.88-2.54 1.404-4.077 1.404-.265 0-.526-.015-.783-.045 1.453.93 3.178 1.474 5.032 1.474 6.038 0 9.34-5 9.34-9.338 0-.143-.004-.284-.01-.425.64-.463 1.198-1.04 1.638-1.7z" fill="#fff" fill-rule="nonzero"/></svg><span>Tweet</span></a></li>
+    <li class="sc-tw"><a data-url=<%= request.url %> href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M16 3.038c-.59.26-1.22.437-1.885.517.677-.407 1.198-1.05 1.443-1.816-.634.375-1.337.648-2.085.795-.598-.638-1.45-1.036-2.396-1.036-1.812 0-3.282 1.468-3.282 3.28 0 .258.03.51.085.75C5.152 5.39 2.733 4.084 1.114 2.1.83 2.583.67 3.147.67 3.75c0 1.14.58 2.143 1.46 2.732-.538-.017-1.045-.165-1.487-.41v.04c0 1.59 1.13 2.918 2.633 3.22-.276.074-.566.114-.865.114-.21 0-.416-.02-.617-.058.418 1.304 1.63 2.253 3.067 2.28-1.124.88-2.54 1.404-4.077 1.404-.265 0-.526-.015-.783-.045 1.453.93 3.178 1.474 5.032 1.474 6.038 0 9.34-5 9.34-9.338 0-.143-.004-.284-.01-.425.64-.463 1.198-1.04 1.638-1.7z" fill="#fff" fill-rule="nonzero"/></svg><span>Tweet</span></a></li>
 
     <!-- Facebook -->
-    <li class="sc-fb"><div class="fb-like" data-href="https://syncer.jp" data-layout="box_count" data-action="like" data-show-faces="true" data-share="false"></div></li>
+    <li class="sc-fb"><div class="fb-like" data-href=<%= request.url %> data-layout="box_count" data-action="like" data-show-faces="true" data-share="false"></div></li>
 
     <!-- Google+ -->
-    <li><div data-href="https://syncer.jp" class="g-plusone" data-size="tall"></div></li>
+    <li><div data-href=<%= request.url %> class="g-plusone" data-size="tall"></div></li>
 
     <!-- はてなブックマーク -->
-    <li><a href="http://b.hatena.ne.jp/entry/https://syncer.jp" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border:none;" /></a></li>
+    <li><a href=<%= request.url %> class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border:none;" /></a></li>
 
     <!-- pocket -->
-    <li><a data-save-url="https://syncer.jp" data-pocket-label="pocket" data-pocket-count="vertical" class="pocket-btn" data-lang="en"></a></li>
+    <li><a data-save-url=<%= request.url %> data-pocket-label="pocket" data-pocket-count="vertical" class="pocket-btn" data-lang="en"></a></li>
 
     <!-- LINE [画像は公式ウェブサイトからダウンロードして下さい] -->
-    <li class="sc-li"><a href="http://line.me/R/msg/text/?https://syncer.jp"><img src="./linebutton_36x60.png" width="36" height="60" alt="LINEに送る" class="sc-li-img"></a></li>
+    <li class="sc-li"><a href="http://line.me/R/msg/text/?<%= request.url %>"><img src="<%= asset_path "linebutton_36x60.png" %>" width="36" height="60" alt="LINEに送る" class="sc-li-img"></a></li>
   </ul>
 
 <!-- Facebook用 -->
@@ -73,14 +84,14 @@
 </div>
 
 <!--  dog.tags -->
-<div class="related_title z-depth-1"><i class="material-icons mid">search</i> おすすめ動画</div>
+<div class="related_title z-depth-0"><i class="material-icons mid">search</i> おすすめ動画</div>
 
-<% @recommended.each do |dog| %>
-     <div class="related z-depth-1" style="border-bottom:1px solid #DDDDDD;">
+<% @recommended.limit(6).each do |dog| %>
+     <div class="related z-depth-0" style="border-bottom:1px solid #DDDDDD;">
       
       <div class="thumb">
         <a href="/dogs/<%= dog.id%>}">
-        <img src=<%=dog.mvid%> alt=<%=dog.title%> height="100px;" width="180px">
+        <img data-original=<%=dog.mvid%>/mqdefault.jpg src="http://www.appelsiini.net/projects/lazyload/img/grey.gif" class="lazy" height="100px;" width="180px">
         </a>
         <span class="related_label Youtube">Youtube</span>
         <span class="related_duration">
@@ -115,7 +126,7 @@
 
         <p>
         <% dog.tags.each do |tag| %>
-        <div class="chip z-depth-0 right" style="background-color:#212121; background-color:#FFC107; margin:0px; font-size:0.7rem;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+        <div class="chip z-depth-0 right" style="background-color:#FFF; border:1px solid #339933; margin:0px 2px;"><%= link_to tag.name.truncate(19), { :action => :tag, :name => tag.name } %></div>
         <% end %>
         </p>
 
@@ -132,13 +143,36 @@
 <!-- 右カラム -->
 
 <div class="col s12 m6 l6">
-<div class="related_title z-depth-1"><i class="material-icons">search</i><%= @dog.tag_list %>の関連動画</div>
+<div class="related_title z-depth-0"><i class="material-icons">search</i>
+<% @related.limit(1).each do |dog| %>
+    <% dog.tags.limit(1).each do |tag| %>
+        <%= tag.name %>
+    <% end %>
+<% end %>
+の関連動画</div>
+<% if @related.count < 1 %>
+
+     <div class="related z-depth-0" style="border-bottom:1px solid #DDDDDD; height:7rem;">
+
+      <div class="center">
+          <i class="material-icons" style="position:absolute; top:5%; left:44%; font-size:6rem; opacity:0.1;">info_outline</i>
+          <div style = "font-weight:200; font-size:1.2rem; padding:35px 0 0 0;"><%= @dog.tag_list %> に関連する動画は見つかりませんでした。</div>
+      </div>
+
+     </div>
+
+<% else %>
+
+<% end %>
+
+
 <% @related.each do |dog| %>
-     <div class="related z-depth-1" style="border-bottom:1px solid #DDDDDD;">
-      
+     <div class="related z-depth-0" style="border-bottom:1px solid #DDDDDD;">
+
       <div class="thumb">
         <a href="/dogs/<%= dog.id%>}">
-        <img src=<%=dog.mvid%> alt=<%=dog.title%> height="100px;" width="180px">
+        <img src=<%=dog.mvid%>/mqdefault.jpg class="lazy" style="overflow:hidden;" alt=<%=dog.title%> height="100px;" width="180px">
+
         </a>
 
         <span class="related_label Youtube">Youtube</span>
@@ -179,19 +213,23 @@
      </div>
 
 <% end %> 
-</div>
 
-<div class="collection z-depth-1" style="background-color:#FFF; margin:20px; top:10px; left:10px; bottom:0px;">
-        <div class="collection-item center black-text">
-        <div class="related_title"><i class="material-icons mid">search</i>タグ検索</div></div>
-        <% @tags.each do |tag| %>
-        <div class="collection-item">
-        <%= link_to tag, { :action => :tag, :name => tag.name, :class =>"collection-item"} %>
-        </div>
+<div class="collection z-depth-0" style="background-color:#FFF;">
+        <div class="related_title"><i class="material-icons mid">search</i>タグ検索</div>
+</div>
+<div style="background:#FFF; padding:40px;">
+
+    <% @tags.each do |tag| %>
+        <% if tag.name.include?("かわいい") || tag.name.include?("感動") || tag.name.include?("おもしろ") || tag.name.include?("写真提供") || tag.name.include?("ハウツー") %>
+        <% else %>
+
+        <div class="chip" style="background-color:#FFF; border:1px solid #009900; font-size:1.3rem; font-weight:200; padding;"><%= link_to tag, { :action => :tag, :name => tag.name, :class =>"" } %></div>
         <% end %>
+    <% end %>
+</div>
 </div>
 
-<div class="card z-depth-1 center" style="background-color:#FFF; margin:20px; top:10px; left:10px; bottom:20px; height:150px; padding:40px">
+<div class="card z-depth-0 center hide-on-small-and-down" style="background-color:#FFF; margin:20px; top:10px; left:10px; bottom:20px; height:150px; padding:40px">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- レスポンシブ2 -->
@@ -204,8 +242,15 @@
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 
-<script type="text/javascript">
-  $(document).ready(lazysizes.js);
+
+<script>
+jQuery(function($){
+  $("img").lazyload({
+    effect: 'fadeIn',
+    effectspeed: 400,
+    });
+
+});
 </script>
 
 <script type="text/javascript">
@@ -215,10 +260,9 @@ var bookmark_icon;
 bookmark_icon = function() {
   return $("#bookmark-link").click(function() {
     return $(this).children('i').toggleClass('fa-bookmark-o');
-    $(this).text('Bookmark!');
-
   });
 };
+
 $(document).ready(bookmark_icon);
 $(document).on('page:change', bookmark_icon);
 

@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require chartist
 //= require Chart
+//= require materialize-sprockets
+//= require jquery.lazyload
+//= require lazysizes

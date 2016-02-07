@@ -1,18 +1,18 @@
 <% provide(:title, @user.id) %>
 
-<div class="related_title z-depth-1"><i class="material-icons mid">search</i> <%= @user.id %>さんお気に入り動画</div>
+<div class="related_title z-depth-0"><i class="material-icons mid">search</i> <%= @user.id %>さんお気に入り動画</div>
 
 <% @user.bookmarks.each do |bookmarks| %>
-     <div class="related z-depth-1" style="border-bottom:1px solid #DDDDDD;">
+     <div class="related z-depth-0" style="border-bottom:1px solid #DDDDDD;">
       
       <div class="thumb">
         <a href="/dogs/<%= bookmarks.dog.id%>}">
-        <img src=<%=bookmarks.dog.mvid%> alt=<%=bookmarks.dog.title%> height="100px;" width="180px">
+        <img src=<%=bookmarks.dog.mvid%>/mqdefault.jpg class="lazy" style="overflow:hidden;" alt=<%=bookmarks.dog.title%> height="100px;" width="180px">
+        <%= bookmarks.dog.mvid %>
         </a>
         <span class="related_label Youtube">Youtube</span>
         <span class="related_duration">
         <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
-        <%= bookmarks.dog.length %>
         </span>
       </div>
       
@@ -22,6 +22,7 @@
         <a href="/dogs/<%= bookmarks.dog.id%>}">
         <%= bookmarks.dog.title.truncate(37).gsub("　","") %>
         </a>
+        <%= bookmarks.dog.length %>
         </div>
 
         <div class="name">
@@ -38,10 +39,6 @@
         <i class="tiny material-icons" style="font-size:0.7rem;">today</i>
         <%= bookmarks.dog.post_date.to_s.gsub("-",".") %>        
         </p>
-
-
-       
-
 
         </div>
 

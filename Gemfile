@@ -8,7 +8,7 @@ gem 'will_paginate'
 gem 'will_paginate-materialize', '~> 0.1.0'
 gem 'breadcrumbs_on_rails'
 gem 'rmagick','2.15.4'
-# gem "lazyload-rails"
+gem "lazyload-rails"
 # gem 'lazysizes_rails'
 gem 'materialize-sass'
 gem 'sprockets', '2.12.4'
@@ -19,7 +19,7 @@ gem 'meta-tags', :require => 'meta_tags'
 gem 'sitemap_generator'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'amazon-ecs'
-# gem "font-awesome-rails"
+gem "font-awesome-rails"
 
 # crontab管理
 gem 'whenever', :require => false

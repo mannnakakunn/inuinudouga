@@ -4,16 +4,16 @@
 <meta charset="utf-8" />
 <%= display_meta_tags({
         :title => "" ,
-        :site => ('DogTube(犬の動画、犬の種類・知識、犬用品の選び方など)') ,
-        :description => 'welcome todescpriton',
+        :site => ('Andog(犬の動画、犬の種類・知識、犬用品の選び方など)') ,
+        :description => '犬に関する総合ウェブマガジン',
         :keywords => '犬,犬の動画, 犬種',
         :open_graph => {
-           :title => 'DogTube',
+           :title => 'Andpg',
            :url   => root_url ,
         },
        :twitter => {
             :card => 'dog',
-            :site => '@dogtube'
+            :site => '@andog'
         } ,
        :viewport => "width=device-width, initial-scale=1.0" ,
        :reverse => true
@@ -21,6 +21,12 @@
 %>
 <meta name="description" content="
           " />
+
+<link href='https://fonts.googleapis.com/css?family=Homemade+Apple' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css">
+
+
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -29,59 +35,74 @@
 
 </head>
 
-<div class="navbar-fixed">
-<nav>
+<div class="navbar z-depth-0">
+<nav style="margin:15px 0 15px 0;" class="z-depth-0">
     <div class="nav-wrapper" style="background-color:#FFF;">
-      <!-- <div style ="margin:0 10px"> -->
-      <ul style="display:inline-block;">
-      <%= link_to "DogTube",dogs_path ,{ :'data-no-turbolink' =>  "true" ,:style => "font-weight: 800; display:inline-block; font-size: 2.5rem; position: static; padding: 0 10; line-height: -2em; color:#212121;" } %>
+
+<%= search_form_for @search do |f| %>
+<div class="left input-field " style="margin:13px 0px 0 17%; width:15%; height:40px;  border:1px solid #CCC; border-radius:39px; line-height:3rem;">
+<%= f.text_field :title_cont, placeholder: 'キーワードを入力', :class=>"" ,:type=>"search",:id=>"search",:required=>"true"%>
+<label for="search"><i class="material-icons" style="line-height:3rem;">search</i></label>
+<i class="material-icons" style="line-height:3rem;">close</i>
+</div>
+<% end %>
+
+
+<%= link_to "Andog",dogs_path ,{ :'data-no-turbolink' =>  "true" ,:style => "
+font-family: 'Homemade Apple', cursive;
+font-weight:800; font-size:3rem;
+height:1.7rem; color:#333; margin:0 0 0 14%;" ,:class =>"" } %>
+
+
+<!-- 
+    <div class="left input-field white" style="margin:13px 0px 0 17%; width:15%; height:40px;  border:1px solid #CCC; border-radius:39px; line-height:3rem;">
+      <input id="search" type="search" required>
+      <label for="search"><i class="material-icons" style="line-height:3rem;">search</i></label>
+      <i class="material-icons" style="line-height:3rem;">close</i>
+    </div>
+ -->
       <!-- </div> -->
+    <ul class="right hide-on-med-and-down" style="height:60px; padding:0 16% 0 0;">
+        <li style="margin:0 0 0 0rem;"><a href="collapsible.html" style="font-size:1.1rem; color:#339933; border-left:1px #EEE solid; border-right:1px #EEE solid">Andogとは</a></li>
 
-      <% if user_signed_in? %>
-      <li style="display:inline-block;"><div id="balloon-1-left" ><%=current_user.id%>さん、いつもありがとう。</div></li>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:#212121; ">menu</i></a>
-      </ul>
-
-      <%else%>
-      <li style="display:inline-block;"><div id="balloon-1-left" >楽しい・かわいい犬専門映像チャンネル</div></li>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color:#212121; ">menu</i></a>
-      </ul>
-      <%end%>
+<!--         <li style="margin:0 0 0 0rem;"><a href="mobile.html" style="font-size:1.1rem; color:#339933; border-right:1px #EEE solid;">無料会員登録</a></li>
+        <li style="margin:0 0 0 0rem;"><a href="mobile.html" style="font-size:1.1rem; color:#339933; border-right:1px #EEE solid;">ログイン</a></li>
+ -->
 
 <% if user_signed_in? %>
+<!-- サインイン状態スタート -->
       <ul class="right hide-on-med-and-down">
-        <li><%= current_user.id%></li>
-        <li><%= link_to "お気に入り",user_path(current_user.id),{:'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
-        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:get } %></li>
-        <li><a href="contact.html" class="black-text">お問い合わせ</a></li>
+        <li style="margin:0 0 0 0rem;">
+        <li><%= link_to "お気に入り",user_path(current_user.id),{:'data-no-turbolink' =>  "true",:class =>'nav_menu'} %></li>
+        <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'nav_menu', :method =>:get } %></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><%= link_to "お気に入り",user_path(current_user.id),{:'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
         <li><%= link_to "ログアウト",destroy_user_session_path,{:class =>'black-text', :method =>:get } %></li>
-        <li><a href="contact.html">お問い合わせ</a></li>
       </ul>
     </div>
 </nav>
 </div>
 
-<% else %>
+<%else%>
+<!-- サインアウト状態スタート -->
 
-      <ul class="right hide-on-med-and-down">
-        <li><%= link_to "新規登録（無料）",new_user_registration_path,{ :'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
-        <li><%= link_to "ログイン",user_session_path,{ :'data-no-turbolink' =>  "true",:class =>'black-text'} %></li>
-        <li><a href="contact.html" class="black-text">お問い合わせ</a></li>
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <li><%= link_to "ログイン",user_session_path,{ :'data-no-turbolink' =>  "true"} %></li>
-        <li><%= link_to "犬の選び方",choice_path,{ :'data-no-turbolink' =>  "true"} %></li>
-        <li><a href="goods.html">犬の迎え入れ方</a></li>
-        <li><a href="contact.html">お問い合わせ</a></li>
-      </ul>
+        <ul class="right hide-on-med-and-down">
+          <li style="margin:0 0 0 0rem;"><%= link_to "無料会員登録",new_user_registration_path,{ :'data-no-turbolink' =>  "true",:class =>'nav_menu',:style =>''} %></li>
+          <li style="margin:0 0 0 0rem;"><%= link_to "ログイン",user_session_path,{ :'data-no-turbolink' =>  "true",:class =>'nav_menu',:style =>''} %></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><%= link_to "ログイン",user_session_path,{ :'data-no-turbolink' =>  "true"} %></li>
+          <li><%= link_to "犬の選び方",choice_path,{ :'data-no-turbolink' =>  "true"} %></li>
+          <li><a href="goods.html">犬の迎え入れ方</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+
+    </ul>
     </div>
 </nav>
-</div>
-
 <% end %>
+<!-- navバーのセッションによる切り替え処理を終了 -->
 
 <% if notice %>
 <div class="row center" style="background-color:#EEE; margin:0px;">
@@ -92,7 +113,7 @@
 <% end %>
 
 <% if alert %>
-<div class="row" s>
+<div class="row">
   <div class="col s12">
     <p class="alert alert-error"><%= alert %></p>  
   </div>
@@ -120,7 +141,6 @@ $(document).ready(function() {
   $('.slider').slider({full_width: true});
   $(".button-collapse").sideNav();
   $('.parallax').parallax();
-  $(".btntoshow").displayPieChart();
   $('.tooltipped').tooltip({delay: 50});
   $('.collapsible').collapsible({
       accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
@@ -133,8 +153,7 @@ $(document).ready(function() {
       gutter: 0, // Spacing from edge
       belowOrigin: false, // Displays dropdown below the button
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    }
-  );
+  });
 });
 </script>
 
@@ -155,7 +174,6 @@ $(function() {
     });
 });
 </script>
-
 
 
 </body>

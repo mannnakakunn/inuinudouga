@@ -7,11 +7,13 @@ require 'nokogiri'
 require 'uri'
 
 urls =[]
-search_doc=Nokogiri::HTML(open('http://www.animal-planet.jp/dogguide/directory/'))
+
+search_doc=Nokogiri::HTML(open('http://dic.nicovideo.jp/a/%E9%89%84%E9%81%93%E8%BB%8A%E4%B8%A1%E4%B8%80%E8%A6%A7'))
 # 解析対象URLと解析準備
-search_doc.xpath('//span[@class="txtb"]').each do |search_term2|
+search_doc.xpath('//*[@id="article"]/table/tbody/tr/td/ul/li/a').each do |search_term2|
 search_term3=search_term2.inner_text
-search_term=URI.encode(search_term2.inner_text+"犬")
+search_term=URI.encode(search_term2.inner_text+"鉄道 -電車でGO -鉄道模型 -トミカ -Nゲージ")
+
 # 解析結果をぶちこむ
 url="https://www.youtube.com/results?search_query=#{search_term}"
 
@@ -45,7 +47,7 @@ url="https://www.youtube.com/results?search_query=#{search_term}"
       fav = doc.xpath("//*[@id='watch8-sentiment-actions']/span/span[1]/button/span").text.to_s.to_i
       date = doc.xpath("//meta[@itemprop='datePublished']/@content").text
 
-      if fav > 10 then
+      if fav > 100 then
 
       dog =Dog.new
       dog.name=doc.xpath("//*[@id='watch7-user-header']/div/a").text

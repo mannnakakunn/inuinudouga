@@ -2,153 +2,47 @@
 
 <body>
 
-<div class="row" style="background-color:#EEE
-; padding: 5px; margin:0px;">
+<div class="row" style="background-color:#FFF
+; padding: 0px; margin:0px;">
 
-<div class="col s12 m4 l3" > 
 
-<div class="card-search z-depth-1">
-
-<%= search_form_for @search do |f| %>
-
-<div class="field">
-<div style="font-size:1rem; font-weight:bold; display:inline-block; margin:0px 0 5px ;">キーワードで検索する</div>
-</div>    
-
-<%= f.text_field :title_cont %>
-
-<!-- <div class="field">
-<div style="font-size:1.3rem; font-weight:bold; line-height:60px;">希望条件で犬種を絞る</div>
-</div>
-
-<dl id="slidetoggle_menu">
-<dt>▽ 希望条件をもっと見る</dt>
-<dd>
-<p>
-</p>
-</dd>
-</dl> -->
-
-<p>
-<div class="field center">
-<%= f.submit "検索" ,class: "btn z-depth-0"%>
-</div>
-</p>
-
-<% end %>
-
-<div class="divider"></div>
-
-<div style="font-weight:bold;">タグで検索する</div>
-
-<div class="center">
-<%= link_to '全ての犬種を表示', [:dogs] ,class:"btn z-depth-0 ",style:"margin:20px;" %>
-</div>
-
-<div class="divider"></div>
-<% @tags.each do |tag| %>
-<div class="chip" style="background-color:#212121; background-color:#FFC107; font-size:0.rem">
-  <%= link_to tag.name, { :action => :tag, :name => tag.name }%>
-</div>
-<% end %>
-
-</div>
-
-<div class="card white center-align z-depth-3" style="height:340px; margin:0px;">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <!-- ラージ スカイスクレイパー -->
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:300px; height:300px; padding:20px 0px 0 0px"
-       data-ad-client="ca-pub-8229413563041055"
-       data-ad-slot="9624583528"></ins>
-  <script>
-  (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-</div>
-
-</div>
 
 <!-- main content start -->
 <div class="row">
-<div class="col s12 m8 l9">
+<div class="col s12 m8 l12" style="padding:0px;">
 
 <!-- today start -->
 
-<div class="row">
-<div class="col s12">
+<div class="row" style="padding:0px;">
+<div class="col s12" style="padding:0px;">
 
-<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
-
-<div class="col s12 m12 l12">
-<div class="card" style="height:120px; background-color:#FFF; padding:15px; margin:2px 0 0 0;">
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- レスポンシブ2 -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8229413563041055"
-     data-ad-slot="6615475524"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-</div>
-</div>
+<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("title_cont")%>
 
 <% else %>
 
-<div class="card z-depth-1" style="background-color:#FFF; margin:20px 0px 0 0px; height:auto; padding:10px;">
+<!-- <div class="card z-depth-0" style="background-color:#FFF; margin:20px 0px 0 0px; height:auto; padding:10px;">
 <div class="card-title" style="font-size:1rem; font-weight:bold; color:#212121; padding:3px;">最近アップロードされた動画  /<span style="color:#818181">  あなたにおすすめの動画</span></div>
+ -->
 
 <% @models_week.each do |dog| %>
 
-<div class="col s12 m6 l3">
+<div class="col s12 m6 l4" style="padding:0px; margin:0px;">
 
-<div class="card z-depth-0" style="height:auto; background-color:#FFF; margin:20px 0 5px; color:#212121; border:1px #212121 solid;">
-  <div class="card-image">
+  <div class="card z-depth-0" style="height:auto; background-color:#FFF; margin:20px 0 5px; color:#212121; border-radius:0px; padding:0px; margin:0px;">
+  <div class="card-image" style="height:290px; overflow:hidden;">
     <a href="/dogs/<%= dog.id%>}">
-    <img src=<%=dog.mvid%> class="lazyload" ></a>
+    <img data-original=<%=dog.mvid%>/sddefault.jpg src="http://phil-portal.com/wp-content/themes/phil-portal/images/gray.gif" class="lazy" style="height:auto; overflow:hidden; width:130%; top:-5rem;">
     <span class="label Youtube">Youtube</span>
     <span class="duration">
     <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
     <%= dog.length %>
     </span>
+    <span class="card-title" style="font-weight:300; font-size:2rem; text-shadow: 0px 0px 8px black;"><%= dog.title.truncate(40) %></span>
+    </a>
+  </div>
   </div>
 
-   <!-- Card Content -->
-   <div class="card-content">   
-   <p>
-     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
-   </p>
-
-   <p style="font-weight:100; color:#727272;">   
-   <i class="tiny material-icons">visibility</i>
-   <%=dog.watch%> views
-   </p>
-
-   <p style="font-weight:100; color:#727272;">
-   <i class="tiny material-icons">thumb_up</i>
-   <%=dog.fav%> likes
-   </p>
-
-
-   <p>
-   <% dog.tags.each do |tag| %>
-   <div class="chip" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name, :'data-no-turbolink' =>  "true"  } %></div>
-   <% end %>
-   </p>
-
-   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
-   <i class="material-icons" style="font-size:0.7rem">today</i>
-   <%= dog.post_date.to_s.gsub("-",".") %>
-   </p>
-
-   <!--  dog.tags -->
-   <!-- user_signed_in -->
-    </div>
-   </div>
-  </div>
+</div>
 
   <% end %>
   <!-- ad on/off -->
@@ -157,36 +51,104 @@
 <% end %>
 <!-- request.url -->
 
-<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
-<% else %>
-<div class="row">
-    <div class="col s12 z-depth-1" style="margin:20px 0px 0px; border:0px; padding:10px; background-color:#FFF; border-radius:8px; ">
-    <span style="font-weight:bold;" ><i class="tiny material-icons" style="font-size:1rem;">thumb_up</i>期間別いいね数ランキング</span>
-      <ul class="tabs">
-        <li class="tab col s2"><a href="#month">月間</a></li>
-        <li class="tab col s2"><a href="#year">年間</a></li>
-        <li class="tab col s2"><a class="active" href="#all">全期間</a></li>
-      </ul>
-    </div>
-</div>
-<%end%>
-
 </div>
 
 <!-- all start -->
 
-<div id="all" class="col s12">
+<div id="all" class="col l6 offset-l1" style="padding:0px;">
+
+<% if request.url.include?("tag") %>
+
+<div class="content_category"><div class="left"><mark style="
+background-color:#FFF; border-bottom:1px solid #339933; font-weight:100; font-size:2rem;">
+
+<% @models.limit(1).each do |dog| %>
+
+        <% if request.url.include?(URI.encode("かわいい")) %>
+              かわいい系の動画
+        <% else %>
+            <% if request.url.include?(URI.encode("おもしろ")) %>
+                  おもしろ系の動画
+            <% else %>
+                <% if request.url.include?(URI.encode("感動")) %>
+                      感動系の動画
+                <% else %>
+                    <% dog.tags.limit(1).each do |tag| %>
+                     <%= tag.name %>
+                    <% end %>
+                <% end %>                
+            <% end %>
+        <% end %>
+
+
+<% end %>
+
+</mark></div></div>
+<br/>
+
+<% else %>
+.<% end %>
+<!-- tag検索モード終了 -->
+
+<% if request.url.include?("title_cont") %>
+
+<div class="content_category"><div class="left"><mark style="
+background-color:#FFF; border-bottom:1px solid #339933; font-weight:100; font-size:2rem;">
+「<%= @search.title_cont %>」で検索した結果　
+</mark></div><div class="right" style="color:#777; font-size:1.5rem; font-weight:100;"><%= Date.today %></div></div>
+<br/>
+
+<% if @models.count < 1 %>
+
+<ul style="padding:20px;">
+<li style="padding:10px; font-size:1.5rem; font-weight:200;"><i class="material-icons" style="top:50%; left:50%;font-size:8rem; position:absolute; z-index:0; color:#888; opacity:0.2;">error</i><span style="line-height:-150%;">検索キーワード「<%= @search.title_cont %>」に一致する情報は見つかりませんでした。</span></li>
+<li style="padding:10px;">1. キーワードが正しく入力されているか、誤字がないか確認してみてください。</span></li>
+<li style="padding:10px;">2. キーワードが長い場合には、短く簡単な言葉に置き換えてみてください。</li>
+<li style="padding:10px;">3. 同じ意味を持つ別の言葉や、一般的な言葉に置き換えてみてください。</li>
+</ul>
+
+<% else %>
+
+<% end %>
+
+
+<% else %>
+<% end %>
+
+<!-- キーワード検索モード終了 -->
+
+<% if request.url.include?("title_cont") || request.url.include?("tag")  %>
+<% else %>
+
+<div class="content_category">
+<div class="left">
+<mark style="
+background-color:#FFF; border-bottom:1px solid #339933; font-weight:100; font-size:2.5rem;">
+話題の動画</mark>
+</div>
+<div class="right" style="color:#777; font-size:1.5rem; font-weight:100;"><%= Date.today %></div>
+</div>
+<br/>
+
+<% end %>
 
 <% @models.each do |dog| %>
 
-<div class="col s12 m6 l3">
+<div class="col s12 m6 l4">
 
-<div class="card" style="height:300px; background-color:#FFF; margin:20px 0 5px">
+<div class="card z-depth-0" style="height:260px; background-color:#FFF; margin:20px 0 0 0px">
   <div class="card-image">
     <a href="/dogs/<%= dog.id%>}">
-    <img src=<%=dog.mvid%> >
+    <img data-original=<%=dog.mvid%>/mqdefault.jpg src="http://www.appelsiini.net/projects/lazyload/img/grey.gif" class="lazy">
     </a>
-    <span class="label Youtube">Youtube</span>
+      <% if dog.post_date > 50.days.ago %>
+      <span class="label Youtube">New</span>
+      <% else %>
+        <% if dog.fav > 50 %>
+        <span class="label Youtube" style="background-color:#FF4444;">Hot</span>
+        <% else %>
+        <% end %>
+      <% end %>
     <span class="duration">
     <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
     <%= dog.length %>
@@ -194,28 +156,28 @@
   </div>
 
    <!-- Card Content -->
-   <div class="card-content">   
+   <div class="card-content" style="padding:5px 0 0 0px; ">   
    <p>
-     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
+     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 200;" } %>
    </p>
 
-   <p style="font-weight:100; color:#727272;">   
+   <p style="font-weight:200; color:#727272;">   
    <i class="tiny material-icons">visibility</i>
    <%=dog.watch%> views
    </p>
 
-   <p style="font-weight:100; color:#727272;">
+   <p style="font-weight:200; color:#727272;">
    <i class="tiny material-icons">thumb_up</i>
    <%=dog.fav%> likes
    </p>
 
    <p>
    <% dog.tags.each do |tag| %>
-   <div class="chip " style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+   <div class="chip " style=" background-color:#FFF; border:1px solid #339933; line-height:1.6rem;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
    <% end %>
    </p>
 
-   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
+   <p style="font-weight:200; color:#818181; font-size:0.7rem" class="right">
    <i class="material-icons" style="font-size:0.7rem">today</i>
    <%= dog.post_date.to_s.gsub("-",".") %>
    </p>
@@ -242,142 +204,147 @@
 
 <!-- all end -->
 
-<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
+<div class="col s4" style="padding:0 0 0 40px;">
+
+<div class="card-search z-depth-0">
+
+<%= search_form_for @search do |f| %>
+
+<div class="field center" style="padding:0px; margin:0px;">
+
+<div style="background-color:#FFF; border-bottom:1px solid #339933; font-weight:100; font-size:2.5rem; display:inline-block; padding:0 0 0 0;">カテゴリで検索</div>
+</div> 
+
+<div class="collection center" style="margin:0px 0 10px 0;">
+
+<%= link_to "おもしろ", {:action => :tag, :name => "おもしろ"},class:"collection-item",style: "font-size:1.6rem; display:block;"  %>
+<%= link_to "かわいい", {:action => :tag, :name => "かわいい"},class:"collection-item",style: "font-size:1.6rem; display:block;"  %>
+<%= link_to "感動", {:action => :tag, :name => "感動"},class:"collection-item",style: "font-size:1.6rem; display:block;"  %>
+
+</div>
+
+<div class="center">
+<div style="background-color:#FFF; border-bottom:1px solid #339933; font-weight:100; font-size:2.5rem; display:inline-block; padding:10px 0 0px 0;">デイリーランキング</div></div>
+
+<% @models_daily.limit(1).each do |model| %>
+
+<div style="padding:30px 0 15px 0; border-bottom:1px #DDD solid" class="collection-item">
+
+  <a href="/dogs/<%= model.id%>">
+  <div style="width:30%; float:left; position: relative; ">
+  <a href="/dogs/<%= model.id%>"><img src=<%= model.mvid %>/default.jpg></a>
+    <span style="position: absolute; top: 0px; left: 0px; width:30px; height:30px; background-color:#339933; color:#FFF; text-align:center; line-height:2rem; font-size:1.5rem; opacity:0.8;">１</span>
+  </div>
+
+  
+  <div style="padding:0px 0 0 20px; width:70%; display:block; float:left;">
+    <a href="/dogs/<%= model.id%>"><span class="title" style="font-size:1.5rem;"><%= model.title.truncate(50) %></span></a>
+  </div>
+  </a>
+
+  <div style="clear:both"></div>
+
+  </div>
+
+<% end %>
+
+<ul class="collection">
+<% i=1 %>
+<% @models_daily.each do |model| %>
+  <%if i>1 %>
+    <li class="collection-item avatar" style="padding:10px 0px 0 0">
+    <div style="position: relative;" >
+       <a href="/dogs/<%= model.id%>"><img src=<%= model.mvid %>/default.jpg; alt="" class="circle left" style="top:0px;"></a>  
+       <span style="position: absolute; top:0px; left: 0px; width:20px; height:20px; background-color:#339933; color:#FFF; text-align:center; line-height:1.5rem; font-size:1rem; opacity:0.8;"><%= i %></span>
+    </div>      
+      <a href="/dogs/<%= model.id%>" class="title" style="position:absolute; padding:10px; left:80px;"><%= model.title.truncate(50) %></a>
+      <% i=i+1 %>
+    </li>
+    </a>
+  <% else %>
+<% i=i+1 %>
+<% end %>
+
+<% end %>
+
+</ul>
+
+<div class="field center" style="padding:0px; margin:0px;">
+<div style="background-color:#FFF; border-bottom:1px solid #339933; font-weight:100; font-size:2.5rem; display:inline-block; padding:0 0 0 0; margin:40px 0 40px 0px ;">キーワードで検索</div>
+</div>    
+<%= f.text_field :title_cont, placeholder: 'ここにキーワードを入力', :class=>"center" ,:style =>"font-size:2rem;" %>
+
+<p style="padding:0px;">
+<div class="field center">
+<%= f.submit "検索" ,class: "btn z-depth-0" ,style:"background-color:#FFF; border:1px solid #339933; border-radius:25px; font-size:1.5rem;" %>
+</div>
+</p>
+
+<div class="field center" style="padding:0px; margin:0px;">
+<div style="background-color:#FFF; border-bottom:1px solid #339933; font-weight:100; font-size:2.5rem; display:inline-block; padding:0 0 0 0; margin:20px 0 20px 0px ;">犬種名で検索
+<span style="font-size:1rem;">(50音順)</span>
+</div>
+</div>
+
+<!-- Specify target? -->
+
+<% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("title_cont")%>
+
+<div class="center">
+<%= link_to '全ての動画を再表示', [:dogs] ,class:"btn z-depth-0",style:"margin:20px; background-color:#FFF; color:#339933; border:1px solid #339933; font-size:1rem; height:auto;" %>
+</div>
+
+<% @tags.each do |tag| %>
+
+  <% if tag.name.include?("かわいい") || tag.name.include?("感動") || tag.name.include?("おもしろ") || tag.name.include?("ハウツー") || tag.name.include?("写真提供")%>
+  <% else %>
+  <div class="chip" style="background-color:#FFF; border:1px solid #009900; font-size:0.6rem;">
+    <%= link_to tag.name.truncate(18), { :action => :tag, :name => tag.name }%>
+  </div>
+  <% end %>
+
+<% end %>
+
+<div style="display:none;">
+<% @tags.each do |tag| %>
+<div class="chip" style="background-color:#FFF; border:1px solid #009900; font-size:0.6rem;">
+  <%= link_to tag.name.truncate(18), { :action => :tag, :name => tag.name }%>
+</div>
+<% end %>
+<!-- tags end -->
+</div>
+</div>
+</div>
+
 <% else %>
 
-<!-- year start -->
+<!-- not specify -->
 
-<div id="year" class="col s12">
-
-<% @models_year.each do |dog| %>
-
-<div class="col s12 m6 l3">
-
-<div class="card z-depth-3" style="height:300px; background-color:#FFF; margin:20px 0 5px;">
-  <div class="card-image">
-    <a href="/dogs/<%= dog.id%>}">
-    <img src=<%=dog.mvid%> class="lazyload" >
-    </a>
-    <span class="label Youtube">Youtube</span>
-    <span class="duration">
-    <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
-    <%= dog.length %>
-    </span>
+<% @tags.each do |tag| %>
+  <% if tag.name.include?("かわいい") || tag.name.include?("感動") || tag.name.include?("おもしろ") || tag.name.include?("AKC") || tag.name.include?("JKC") || tag.name.include?("写真提供") %>
+  <% else %>
+  <div class="chip" style="background-color:#FFF; border:1px solid #009900; font-size:0.6rem;">
+    <%= link_to tag.name.truncate(18), { :action => :tag, :name => tag.name }%>
   </div>
-
-   <!-- Card Content -->
-   <div class="card-content">   
-   <p>
-     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
-   </p>
-
-   <p style="font-weight:100; color:#727272;">   
-   <i class="tiny material-icons">visibility</i>
-   <%=dog.watch%> views
-   </p>
-
-   <p style="font-weight:100; color:#727272;">
-   <i class="tiny material-icons">thumb_up</i>
-   <%=dog.fav%> likes
-   </p>
-
-   <p>
-   <% dog.tags.each do |tag| %>
-   <div class="chip z-depth-1" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
-   <% end %>
-   </p>
-
-   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
-   <i class="material-icons" style="font-size:0.7rem">today</i>
-   <%= dog.post_date.to_s.gsub("-",".") %>
-   </p>
-
-   <!--  dog.tags -->
-</div>
-</div>
-</div>
-
+  <% end %>
 <% end %>
 
-<div style="padding:20px 0 0 0">
-<%= will_paginate @models_year %>
 </div>
 
-</div>
-
-<!-- year end-->
-
-<!-- month start -->
-
-<div id="month" class="col s12">
-
-<% @models_month.each do |dog| %>
-
-<div class="col s12 m6 l3">
-
-<div class="card z-depth-3" style="height:300px; background-color:#FFF; margin:20px 0 5px">
-  <div class="card-image">
-    <a href="/dogs/<%= dog.id%>}">
-    <img src=<%=dog.mvid%> 
-    </a>
-    <span class="label Youtube">Youtube</span>
-    <span class="duration">
-    <i class="tiny material-icons" style="font-size:0.7rem;">schedule</i>
-    <%= dog.length %>
-    </span>
-  </div>
-
-   <!-- Card Content -->
-   <div class="card-content">   
-   <p>
-     <%= link_to dog.title.truncate(30),dog_path(dog.id) ,{ :'data-no-turbolink' =>  "true" ,:style =>"font-size:1rem; font-weight: 800;" } %>
-   </p>
-
-   <p style="font-weight:100; color:#727272;">   
-   <i class="tiny material-icons">visibility</i>
-   <%=dog.watch%> views
-   </p>
-
-   <p style="font-weight:100; color:#727272;">
-   <i class="tiny material-icons">thumb_up</i>
-   <%=dog.fav%> likes
-   </p>
-
-   <p>
-   <% dog.tags.each do |tag| %>
-   <div class="chip z-depth-1" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
-   <% end %>
-   </p>
-
-   <p style="font-weight:100; color:#818181; font-size:0.7rem" class="right">
-   <i class="material-icons" style="font-size:0.7rem">today</i>
-   <%= dog.post_date.to_s.gsub("-",".") %>
-   </p>
-
-   <!--  dog.tags -->
-
-<!-- user_signed_in -->
-
-</div>
-</div>
-</div>
 
 <% end %>
-
-<div style="padding:20px 0 0 0">
-<%= will_paginate @models_month %>
-</div>
-
-</div>
-
 <% end %>
+
+
+</div>
+
 
 
 <% if request.url.include?("page=") || request.url.include?("tag") || request.url.include?("commit")%>
 
 <div class="row center" style="margin:20px 0px 0px 12px; ">
-<div class="col s12 m12 l12">
-<div class="card" style=" height:120px; background-color:#FFF; padding:15px;">
+<div class="col s12 m12 l12 hide-on-small-and-down">
+<div class="card z-depth-0" style=" height:120px; background-color:#FFF; padding:15px;">
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- レスポンシブ2 -->
@@ -406,7 +373,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/js/materialize.min.js"></script>
 
-<script type="text/javascript">$(document).ready()</script>
+<script>
+jQuery(function($){
+  $("img").lazyload({
+    effect: 'fadeIn',
+    effectspeed: 400,
+    });
+
+});
+</script>
 
 <script type="text/javascript">
 var num = 0;
@@ -449,11 +424,5 @@ $(window).scroll(function () {
 <script type="text/javascript">
 $(document).ready(function(){
     $('ul.tabs').tabs();
-  });
-</script>
-
-<script>
-$(function(){
-  $("img.lazy").lazyload({ effect: 'fadeIn', threshold: '200' });
 });
 </script>

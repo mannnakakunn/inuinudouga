@@ -79,6 +79,8 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    lazyload-rails (0.3.1)
+      nokogiri (~> 1.5)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     materialize-sass (0.95.2)
@@ -198,10 +200,12 @@ DEPENDENCIES
   devise (~> 3.4.0)
   enum_help
   flickraw
+  font-awesome-rails
   hirb
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  lazyload-rails
   materialize-sass
   meta-tags
   mysql2 (~> 0.3.18)

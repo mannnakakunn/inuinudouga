@@ -7,11 +7,14 @@ require 'nokogiri'
 require 'uri'
 
 urls =[]
-search_doc=Nokogiri::HTML(open('http://www.animal-planet.jp/dogguide/directory/'))
+
+search_doc=Nokogiri::HTML(open('http://whc.unesco.org/en/list'))
 # 解析対象URLと解析準備
-search_doc.xpath('//span[@class="txtb"]').each do |search_term2|
+search_doc.xpath('//*[@id="acc"]/div/ul/li/a').each do |search_term2|
 search_term3=search_term2.inner_text
-search_term=URI.encode(search_term2.inner_text+"犬")
+if(search_term3 == "#" || search_term3 == "*")
+else
+search_term=URI.encode(search_term2.inner_text+"world heritage -TBS -世界遺産 -UNESCO -usesco -rock -music -ISIS -attack -interview")
 # 解析結果をぶちこむ
 url="https://www.youtube.com/results?search_query=#{search_term}"
 
@@ -73,4 +76,5 @@ url="https://www.youtube.com/results?search_query=#{search_term}"
     #　一旦、犬種を吐き出す
     urls =[]
     puts search_term3
+end
 end

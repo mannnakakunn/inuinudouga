@@ -3,7 +3,7 @@ class CreateDogs < ActiveRecord::Migration
     create_table :dogs do |t|
       t.string :name
       t.string :title
-      t.text :description
+      t.string :description
       t.string :genre
       t.string :length
       t.integer :watch

@@ -165,7 +165,7 @@
 
    <p>
    <% dog.tags.each do |tag| %>
-   <div class="chip z-depth-1" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
+   <div class="chip z-depth-0" style="background-color:#212121; background-color:#FFC107;"><%= link_to tag, { :action => :tag, :name => tag.name } %></div>
    <% end %>
    </p>
 
