@@ -1,15 +1,5 @@
 <body>
 
-<script type="text/javascript">
-var txt1 = "ブックマーク済みです";
-var txt2 = "ブックマークしますか？";
-
-  function ChangeTxt(txt) { 
-    document.getElementById("text").innerHTML=txt;
-} 
-</script>
-
-
 <div class="row" style="background-color:#EEEEEE; margin:0px; padding:10px 10px 20px 20px;">
 <!-- 左カラム -->
 <div class="col s12 m6 l6">
@@ -259,6 +249,7 @@ var bookmark_icon;
 
 bookmark_icon = function() {
   return $("#bookmark-link").click(function() {
+    return $(this).children('i').toggleClass('fa-bookmark-o');
     return $(this).children('i').toggleClass('fa-bookmark-o');
   });
 };
